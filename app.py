@@ -36,10 +36,10 @@ def intro():
     userId = session.get('user', None)
     return render_template('intro.html', userId=userId)
 
-@app.route('/first')
-def first():
+@app.route('/firstScenario')
+def firstScenario():
     userId = session.get('user', None)
-    return render_template('first.html', userId=userId)
+    return render_template('firstScenario.html', userId=userId)
 
 if __name__ == '__main__':  
     app.run(debug=True)
