@@ -12,25 +12,25 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)  # 配置7天有效
 app._static_folder = "./static"
-app.config['SQLALCHEMY_DATABASE_URI'] ='postgres://isagwxjbrwjrvt:387f572542c82fd58f586b71c11a6f999c4035a43239b02f65292424e827dab9@ec2-3-208-224-152.compute-1.amazonaws.com:5432/dflp6gjthan76g'
+# app.config['SQLALCHEMY_DATABASE_URI'] ='postgres://isagwxjbrwjrvt:387f572542c82fd58f586b71c11a6f999c4035a43239b02f65292424e827dab9@ec2-3-208-224-152.compute-1.amazonaws.com:5432/dflp6gjthan76g'
 
-def create_user_table():
-    conn = sqlite3.connect("pokeInfo.sqlite")
-    cur = conn.cursor()
+# def create_user_table():
+#     conn = sqlite3.connect("pokeInfo.sqlite")
+#     cur = conn.cursor()
 
-    create_users = '''
-        CREATE TABLE IF NOT EXISTS "Users" (
-            "Id"    INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-            "UserId" TEXT NOT NULL,
-            "FirstAnswer"  TEXT NOT NULL,
-            "SecondAnswer" TEXT NOT NULL,
-            "ThirdAnswer" TEXT NOT NULL
-        );
-    '''
-    cur.execute(create_users)
+#     create_users = '''
+#         CREATE TABLE IF NOT EXISTS "Users" (
+#             "Id"    INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+#             "UserId" TEXT NOT NULL,
+#             "FirstAnswer"  TEXT NOT NULL,
+#             "SecondAnswer" TEXT NOT NULL,
+#             "ThirdAnswer" TEXT NOT NULL
+#         );
+#     '''
+#     cur.execute(create_users)
 
-    conn.commit()
-    conn.close()
+#     conn.commit()
+#     conn.close()
 
 @app.route('/')
 def index():

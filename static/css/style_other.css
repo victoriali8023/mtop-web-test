@@ -1,0 +1,13 @@
+.question-container {
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: underline;
+    color: initial;
+}
