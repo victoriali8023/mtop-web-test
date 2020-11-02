@@ -13,21 +13,21 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)  # 配置7天有效
 app._static_folder = "./static"
-app.config['SQLALCHEMY_DATABASE_URI'] ='postgres://isagwxjbrwjrvt:387f572542c82fd58f586b71c11a6f999c4035a43239b02f65292424e827dab9@ec2-3-208-224-152.compute-1.amazonaws.com:5432/dflp6gjthan76g'
+# app.config['SQLALCHEMY_DATABASE_URI'] ='postgres://isagwxjbrwjrvt:387f572542c82fd58f586b71c11a6f999c4035a43239b02f65292424e827dab9@ec2-3-208-224-152.compute-1.amazonaws.com:5432/dflp6gjthan76g'
 
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 
-class Users(db.model):
-    __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.String(200), unique=True)
-    firstAnswer = db.Column(db.String(200))
-    secondAnswer = db.Column(db.String(200))
+# class Users(db.model):
+#     __tablename__ = 'users'
+#     id = db.Column(db.Integer, primary_key=True)
+#     userId = db.Column(db.String(200), unique=True)
+#     firstAnswer = db.Column(db.String(200))
+#     secondAnswer = db.Column(db.String(200))
 
-    def __init__(self, userId, firstAnswer, secondAnswer):
-        self.userId = userId
-        self.firstAnswer = firstAnswer
-        self.secondAnswer = secondAnswer
+#     def __init__(self, userId, firstAnswer, secondAnswer):
+#         self.userId = userId
+#         self.firstAnswer = firstAnswer
+#         self.secondAnswer = secondAnswer
 
 @app.route('/')
 def index():
