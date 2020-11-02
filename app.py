@@ -87,9 +87,9 @@ def secondGame():
     question = 'q' + userId[7:9]
     return render_template('secondGame.html', question=question, interface=interface, letter=letter)
 
-@app.route('/questionnaire')
-def questionnaire():
-    return render_template('questionnaire.html')
+# @app.route('/questionnaire')
+# def questionnaire():
+#     return render_template('questionnaire.html')
 
 if __name__ == '__main__':  
     app.run(debug=True)
