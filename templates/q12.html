@@ -8,25 +8,23 @@
 <body>
 
     <form action="/handle_form" method="POST">
-        <p>
-            What was the time you checked last time?
-            <select name="sizes">
-                <option value='9:19 am'>9:19 am</option>
-                <option value="9:20 am">9:20 am</option>
-                <option value="9:21 am">9:21 am</option>
-                <option value="9:23 am">9:23 am</option>
-            </select>
-        </p>
-        <p>
-            What is the progress you checked last time?
-            <select name="sizes">
-                <option value='9%'>9%</option>
-                <option value="18%">18%</option>
-                <option value="27%">27%</option>
-                <option value="36%">36%</option>
-            </select>
-        </p>
-
+        <div class='form-group'>
+            <h3>What was the time you checked last time?</h3>
+       
+                <input type='radio' name='time' value='9:19 am'>9:19 am
+                <input type='radio' name='time' value="9:20 am">9:20 am
+                <input type='radio' name='time' value="9:21 am">9:21 am
+                <input type='radio' name='time' value="9:23 am">9:23 am
+          
+       
+       
+            <h3>What is the progress you checked last time?</h3>
+           
+                <input type='radio' name='progress' value='9%'>9%
+                <input type='radio' name='progress' value="18%">18%
+                <input type='radio' name='progress' value="27%">27%
+                <input type='radio' name='progress' value="36%">36%
+        </div>
         <input type="submit" value="Submit Form"/>
     </form>
 </body>

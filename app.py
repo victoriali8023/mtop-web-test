@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session
 from flask_session import Session
+from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 import requests
 import uuid
@@ -12,25 +13,21 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)  # 配置7天有效
 app._static_folder = "./static"
-# app.config['SQLALCHEMY_DATABASE_URI'] ='postgres://isagwxjbrwjrvt:387f572542c82fd58f586b71c11a6f999c4035a43239b02f65292424e827dab9@ec2-3-208-224-152.compute-1.amazonaws.com:5432/dflp6gjthan76g'
+app.config['SQLALCHEMY_DATABASE_URI'] ='postgres://isagwxjbrwjrvt:387f572542c82fd58f586b71c11a6f999c4035a43239b02f65292424e827dab9@ec2-3-208-224-152.compute-1.amazonaws.com:5432/dflp6gjthan76g'
 
-# def create_user_table():
-#     conn = sqlite3.connect("pokeInfo.sqlite")
-#     cur = conn.cursor()
+db = SQLAlchemy(app)
 
-#     create_users = '''
-#         CREATE TABLE IF NOT EXISTS "Users" (
-#             "Id"    INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-#             "UserId" TEXT NOT NULL,
-#             "FirstAnswer"  TEXT NOT NULL,
-#             "SecondAnswer" TEXT NOT NULL,
-#             "ThirdAnswer" TEXT NOT NULL
-#         );
-#     '''
-#     cur.execute(create_users)
+class Users(db.model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    userId = db.Column(db.String(200), unique=True)
+    firstAnswer = db.Column(db.String(200))
+    secondAnswer = db.Column(db.String(200))
 
-#     conn.commit()
-#     conn.close()
+    def __init__(self, userId, firstAnswer, secondAnswer):
+        self.userId = userId
+        self.firstAnswer = firstAnswer
+        self.secondAnswer = secondAnswer
 
 @app.route('/')
 def index():
@@ -77,7 +74,10 @@ def q12():
 
 @app.route('/secondScenario', methods=['POST'])
 def secondScenario():
-    return render_template('secondScenario.html')
+    if request.method == 'POST':
+        firstAnswer = request.form['firstAnswer']
+        
+        return render_template('secondScenario.html')
 
 @app.route('/secondGame')
 def secondGame():
