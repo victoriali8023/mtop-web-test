@@ -11,7 +11,7 @@ $(document).keypress(function(e) {
   }
   setInterval(function(){
     if (name.length > 15) {
-        $(".watch-container").removeClass("show");x
+        $(".watch-container").removeClass("show");
       }
   },5000);
   window.setTimeout(function(){
@@ -33,13 +33,13 @@ class AudioController {
     this.bgmMusic.volume = 0.5;
     this.bgmMusic.loop = true;
   }
-  startMusic() {
-    this.bgmMusic.play();
-  }
-  stopMusic() {
-    this.bgmMusic.pause();
-    this.bgmMusic.currentTime = 0;
-  }
+  // startMusic() {
+  //   this.bgmMusic.play();
+  // }
+  // stopMusic() {
+  //   this.bgmMusic.pause();
+  //   this.bgmMusic.currentTime = 0;
+  // }
   flip() {
     this.flipSound.play();
   }
@@ -47,12 +47,12 @@ class AudioController {
     this.matchSound.play();
   }
   victory() {
-    this.stopMusic();
+    // this.stopMusic();
     this.victorySound.play();
   }
   gameOver() {
-    this.stopMusic();
-    this.gameOverSound.play();
+    // this.stopMusic();
+    // this.gameOverSound.play();
   }
 }
 
@@ -73,7 +73,7 @@ class MixOrMatch {
     this.busy = true;
 
     setTimeout(() => {
-      this.audioController.startMusic();
+      // this.audioController.startMusic();
       this.shuffleCards();
       this.countDown = this.startCountDown();
       this.busy = false;
@@ -185,5 +185,5 @@ if(document.readyState === 'loading') {
 } 
 
 let audioController = new AudioController();
-audioController.startMusic();
+// audioController.startMusic();
 
