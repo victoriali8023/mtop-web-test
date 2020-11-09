@@ -8,6 +8,7 @@ import random
 from random import randint
 import psycopg2
 import subprocess
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
@@ -34,6 +35,7 @@ def insert_row_to_users(value):
     conn.close()
 
 @app.route('/')
+@cross_origin(supports_credentials=True)
 def index():
     letterList = ['A', 'B', 'C']
     firstSession = ['11', '12']
@@ -61,6 +63,7 @@ def firstScenario():
     return render_template('firstScenario.html')
 
 @app.route('/firstGame')
+@cross_origin(supports_credentials=True)
 def firstgame():
     userId = session.get('user', None)
     letter = userId[0]
@@ -77,6 +80,7 @@ def q12():
     return render_template('q12.html')
 
 @app.route('/secondScenario', methods=['POST'])
+@cross_origin(supports_credentials=True)
 def secondScenario():
     if request.method == 'POST':
         session['q1Time'] = request.form['time']
@@ -85,6 +89,7 @@ def secondScenario():
         return render_template('secondScenario.html')
 
 @app.route('/secondGame')
+@cross_origin(supports_credentials=True)
 def secondGame():
     userId = session.get('user', None)
     letter = userId[0]
@@ -101,6 +106,7 @@ def q22():
     return render_template('q22.html')
 
 @app.route('/thirdScenario', methods=['POST'])
+@cross_origin(supports_credentials=True)
 def thirdScenario():
     if request.method == 'POST':
         session['q2Progress'] = request.form['progress']
@@ -108,6 +114,7 @@ def thirdScenario():
         return render_template('thirdScenario.html')
 
 @app.route('/thirdGame')
+@cross_origin(supports_credentials=True)
 def thirdGame():
     userId = session.get('user', None)
     letter = userId[0]
@@ -124,6 +131,7 @@ def q32():
     return render_template('q32.html')
 
 @app.route('/questionnaire',methods=['POST'])
+@cross_origin(supports_credentials=True)
 def questionnaire():
     if request.method == 'POST':
         session['q3Time'] = request.form['time']
@@ -133,6 +141,7 @@ def questionnaire():
 
 
 @app.route('/final',methods=['POST'])
+@cross_origin(supports_credentials=True)
 def final():
     insertValue = []
     insertValue.append(session.get('q1Time', None))
