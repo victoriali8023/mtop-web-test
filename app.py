@@ -23,7 +23,7 @@ app._static_folder = "./static"
 DATABASE_URL = os.environ['DATABASE_URL']
 
 
-def create_pokemon_table():
+def create_user_table():
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
@@ -210,6 +210,7 @@ def final():
 
         code = letter + '-' + first + '-' + second + '-' + third + '-' + number
         insertValue.append(code)
+        create_user_table()
         insert_row_to_users(insertValue)
         print(insertValue)
         return render_template('final.html',code=code)
