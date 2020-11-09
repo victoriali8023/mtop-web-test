@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_other.css') }}" />
+    <title>Question</title>
+</head>
+<body>
+
+    <form action="/questionnaire" method="POST">
+        <div class='form-group'>
+            <h3>What was the time you checked last time?</h3>
+                <input type='radio' name='time' value='6:45 pm'>6:45 pm
+                <input type='radio' name='time' value="6:46 pm">6:46 pm
+                <input type='radio' name='time' value="6:47 pm">6:47 pm
+                <input type='radio' name='time' value="6:48 pm">6:48 pm
+            
+        
+        
+            <h3>What is the progress you checked last time?</h3>
+            
+                <input type='radio' name='progress' value='8%'>8%</option>
+                <input type='radio' name='progress' value="99%">99%</option>
+                <input type='radio' name='progress' value="108%">108%</option>
+                <input type='radio' name='progress' value="117%">117%</option>
+        
+        </div>
+        <input type="submit" value="Submit Form"/>
+    </form>
+</body>
+</html>

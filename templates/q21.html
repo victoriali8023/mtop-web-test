@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_other.css') }}" />
+    <title>Question</title>
+</head>
+<body>
+
+    <form action="/thirdScenario" method="POST">
+        <div class='form-group'>
+      
+            <h3>What is the progress you checked last time?</h3>
+            
+                <input type='radio' name='progress' value='48%'>48%</option>
+                <input type='radio' name='progress' value="57%">57%</option>
+                <input type='radio' name='progress' value="66%">66%</option>
+                <input type='radio' name='progress' value="75%">75%</option>
+        
+        </div>
+        <input type="submit" value="Submit Form"/>
+    </form>
+</body>
+</html>

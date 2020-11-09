@@ -1,0 +1,334 @@
+<html lang='en'>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    <!-- <script src="{{ url_for('static', filename='js/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="static/js/script.js" async></script>
+    <script type="text/javascript">
+
+        var question = '{{question}}'
+        var interface = '{{interface}}'
+        var letter = '{{letter}}'
+    </script>
+    <title>Game</title>
+</head>
+<body>
+    <h1 class='page-title'>Memory Card Game</h1>
+    <div class='performance-container'>
+        
+        <div class='overlay-text visible'>
+            Click to Start
+        </div>
+        <div id='game-over-text' class='overlay-text'>
+            Game Over!
+        </div>
+        <div id='victory-text' class='overlay-text'>
+            You Win!
+        </div>
+        <div class='watch-container'>
+            <img id='interface' src=''>
+        </div>
+        <div class='game-container'>
+            <div class='game-info-container'>
+                <div class='game-info'>
+                    Time <span id='time-remaining'>150</span>
+                </div>
+                <div class='game-info'>
+                    Flips <span id='flips'>0</span>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/01.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/02.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/01.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/02.png'>
+                </div>
+            </div>
+            
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/03.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/04.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/03.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/04.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/05.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/06.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/05.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/06.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/07.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/08.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/07.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/08.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/09.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/10.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/09.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/10.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/11.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/12.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/11.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/12.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/13.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/14.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/13.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/14.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/15.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/16.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/15.png'>
+                </div>
+            </div>
+            <div class='card'>
+                <div class='card-back card-face'>
+                    <img class='back'
+                    src='static/images/back.png'>
+                </div>
+                <div class='card-front card-face'>
+                    <img class='card-value' src='static/images/16.png'>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</body>
+</html>

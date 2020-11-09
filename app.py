@@ -1,33 +1,36 @@
 from flask import Flask, render_template, request, session
 from flask_session import Session
-from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 import requests
 import uuid
 import os
 import random
 from random import randint
-import sqlite3
+import psycopg2
+import subprocess
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)  # 配置7天有效
 app._static_folder = "./static"
-# app.config['SQLALCHEMY_DATABASE_URI'] ='postgres://isagwxjbrwjrvt:387f572542c82fd58f586b71c11a6f999c4035a43239b02f65292424e827dab9@ec2-3-208-224-152.compute-1.amazonaws.com:5432/dflp6gjthan76g'
+database_url = subprocess.run(
+    ['heroku', 'config:get', 'DATABASE_URL', '--app', 'your-heroku-app-name'],
+    stdout=subprocess.PIPE,
+).stdout
 
-# db = SQLAlchemy(app)
 
-# class Users(db.model):
-#     __tablename__ = 'users'
-#     id = db.Column(db.Integer, primary_key=True)
-#     userId = db.Column(db.String(200), unique=True)
-#     firstAnswer = db.Column(db.String(200))
-#     secondAnswer = db.Column(db.String(200))
+def insert_row_to_users(value):
 
-#     def __init__(self, userId, firstAnswer, secondAnswer):
-#         self.userId = userId
-#         self.firstAnswer = firstAnswer
-#         self.secondAnswer = secondAnswer
+    conn = psycopg2.connect(database_url)
+    cur = conn.cursor()
+
+    insert_user = '''
+        INSERT INTO Effects
+        VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    '''
+    cur.execute(insert_user, value)
+    conn.commit()
+    conn.close()
 
 @app.route('/')
 def index():
@@ -75,7 +78,8 @@ def q12():
 @app.route('/secondScenario', methods=['POST'])
 def secondScenario():
     if request.method == 'POST':
-        firstAnswer = request.form['firstAnswer']
+        session['q1Time'] = request.form['time']
+        session['q1Progress'] = request.form['progress']
         
         return render_template('secondScenario.html')
 
@@ -87,9 +91,64 @@ def secondGame():
     question = 'q' + userId[7:9]
     return render_template('secondGame.html', question=question, interface=interface, letter=letter)
 
-# @app.route('/questionnaire')
-# def questionnaire():
-#     return render_template('questionnaire.html')
+@app.route('/q21')
+def q21():
+    return render_template('q21.html')
+
+@app.route('/q22')
+def q22():
+    return render_template('q22.html')
+
+@app.route('/thirdScenario', methods=['POST'])
+def thirdScenario():
+    if request.method == 'POST':
+        session['q2Progress'] = request.form['progress']
+        
+        return render_template('thirdScenario.html')
+
+@app.route('/thirdGame')
+def thirdGame():
+    userId = session.get('user', None)
+    letter = userId[0]
+    interface = userId[10:13] +'.png'
+    question = 'q' + userId[11:13]
+    return render_template('thirdGame.html', question=question, interface=interface, letter=letter)
+
+@app.route('/q31')
+def q31():
+    return render_template('q31.html')
+
+@app.route('/q32')
+def q32():
+    return render_template('q32.html')
+
+@app.route('/questionnaire',methods=['POST'])
+def questionnaire():
+    if request.method == 'POST':
+        session['q3Time'] = request.form['time']
+        session['q3Progress'] = request.form['progress']
+        
+        return render_template('questionnaire.html')
+
+
+@app.route('/final',methods=['POST'])
+def final():
+    insertValue = []
+    insertValue.append(session.get('q1Time', None))
+    insertValue.append(session.get('q1Progress', None))
+    insertValue.append(session.get('q2Progress', None))
+    insertValue.append(session.get('q3Time', None))
+    insertValue.append(session.get('q3Progress', None))
+    
+    if request.method == 'POST':
+        for i in range(1,16):
+            name = 's' + str(i)
+            insertValue.append(request.form[name], None)
+        
+        insert_row_to_users(value)
+
+        code = session.get('user', None)
+        return render_template('final.html',code=code)
 
 if __name__ == '__main__':  
     app.run(debug=True)
