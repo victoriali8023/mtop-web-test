@@ -38,18 +38,19 @@ def insert_row_to_users(value):
 @cross_origin(supports_credentials=True)
 def index():
     letterList = ['A', 'B', 'C']
-    firstSession = ['11', '12']
-    secondSession = ['21', '22']
-    thirdSession = ['31', '32']
+    # firstSession = ['11', '12']
+    # secondSession = ['21', '22']
+    # thirdSession = ['31', '32']
 
     letter = random.choice(letterList)
-    first = letter + random.choice(firstSession)
-    second = letter + random.choice(secondSession)
-    third = letter + random.choice(thirdSession)
-    number = str(uuid.uuid4())
+    # first = letter + random.choice(firstSession)
+    # second = letter + random.choice(secondSession)
+    # third = letter + random.choice(thirdSession)
+    # number = str(uuid.uuid4())
 
     userId = letter + '-' + first + '-' + second + '-' + third + '-' + number
-    session['user'] = userId
+    session['letter'] = letter
+    # session['user'] = userId
     session.permanent = True
 
     return render_template('index.html')
@@ -65,10 +66,14 @@ def firstScenario():
 @app.route('/firstGame')
 @cross_origin(supports_credentials=True)
 def firstgame():
-    userId = session.get('user', None)
-    letter = userId[0]
-    interface = userId[2:5] +'.png'
-    question = 'q' + userId[3:5]
+    firstSession = ['11', '12']
+    first = random.choice(firstSession)
+
+    letter = session.get('letter', None)
+    interface = letter + first +'.png'
+    question = 'q' + first
+    session['first'] = first
+    session.permanent = True
     return render_template('firstGame.html', question=question, interface=interface, letter=letter)
 
 @app.route('/q11')
@@ -91,10 +96,14 @@ def secondScenario():
 @app.route('/secondGame')
 @cross_origin(supports_credentials=True)
 def secondGame():
-    userId = session.get('user', None)
-    letter = userId[0]
-    interface = userId[6:9] +'.png'
-    question = 'q' + userId[7:9]
+    secondSession = ['21', '22']
+    second = random.choice(secondSession)
+
+    letter = session.get('letter', None)
+    interface = letter + second +'.png'
+    question = 'q' + second
+    session['second'] = second
+    session.permanent = True
     return render_template('secondGame.html', question=question, interface=interface, letter=letter)
 
 @app.route('/q21')
@@ -110,16 +119,20 @@ def q22():
 def thirdScenario():
     if request.method == 'POST':
         session['q2Progress'] = request.form['progress']
-        print(session.get('q2Progress', None))
+        session.permanent = True
         return render_template('thirdScenario.html')
 
 @app.route('/thirdGame')
 @cross_origin(supports_credentials=True)
 def thirdGame():
-    userId = session.get('user', None)
-    letter = userId[0]
-    interface = userId[10:13] +'.png'
-    question = 'q' + userId[11:13]
+    thirdSession = ['31', '32']
+    third = random.choice(thirdSession)
+
+    letter = session.get('letter', None)
+    interface = letter + third +'.png'
+    question = 'q' + third
+    session['third'] = third
+    session.permanent = True
     return render_template('thirdGame.html', question=question, interface=interface, letter=letter)
 
 @app.route('/q31')
@@ -136,7 +149,7 @@ def questionnaire():
     if request.method == 'POST':
         session['q3Time'] = request.form['time']
         session['q3Progress'] = request.form['progress']
-        
+        session.permanent = True
         return render_template('questionnaire.html')
 
 
@@ -156,8 +169,13 @@ def final():
             insertValue.append(request.form[name])
             
         insert_row_to_users(insertValue)
-        print(insertValue)
-        code = session.get('user', None)
+        letter = session.get('letter', None)
+        first = session.get('first', None)
+        second = session.get('second', None)
+        third = session.get('third', None)
+        number = str(uuid.uuid4())
+
+        code = letter + '-' + first + '-' + second + '-' + third + '-' + number
         return render_template('final.html',code=code)
 
 if __name__ == '__main__':  
