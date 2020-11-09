@@ -23,6 +23,7 @@ app._static_folder = "./static"
 DATABASE_URL = os.environ['DATABASE_URL']
 
 
+
 def create_user_table():
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
@@ -37,6 +38,7 @@ def create_user_table():
 
 def insert_row_to_users(value):
 
+    # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
