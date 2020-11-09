@@ -11,7 +11,7 @@ import subprocess
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)  # 配置7天有效
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)  # 配置7天有效
 app._static_folder = "./static"
 # database_url = subprocess.run(
 #     ['heroku', 'config:get', 'DATABASE_URL', '--app', 'your-heroku-app-name'],
@@ -36,19 +36,20 @@ def insert_row_to_users(value):
 @app.route('/')
 def index():
     letterList = ['A', 'B', 'C']
-    firstSession = ['11', '12']
-    secondSession = ['21', '22']
-    thirdSession = ['31', '32']
+    # firstSession = ['11', '12']
+    # secondSession = ['21', '22']
+    # thirdSession = ['31', '32']
 
     letter = random.choice(letterList)
-    first = letter + random.choice(firstSession)
-    second = letter + random.choice(secondSession)
-    third = letter + random.choice(thirdSession)
-    number = str(uuid.uuid4())
+    # first = letter + random.choice(firstSession)
+    # second = letter + random.choice(secondSession)
+    # third = letter + random.choice(thirdSession)
+    # number = str(uuid.uuid4())
 
-    userId = letter + '-' + first + '-' + second + '-' + third + '-' + number
-    session['user'] = userId
-    session.permanent = True # 长期有效
+    # userId = letter + '-' + first + '-' + second + '-' + third + '-' + number
+    # session['user'] = userId
+    session['letter'] = letter
+    session.permanent = True
 
     return render_template('index.html')
 
@@ -62,10 +63,12 @@ def firstScenario():
 
 @app.route('/firstGame')
 def firstgame():
-    userId = session.get('user', None)
-    letter = userId[0]
-    interface = userId[2:5] +'.png'
-    question = 'q' + userId[3:5]
+    firstSession = ['11', '12']
+    first = random.choice(firstSession)
+    letter = session.get('letter', None)
+    interface = letter + first +'.png'
+    question = 'q' + first
+    session['first'] = letter + first
     return render_template('firstGame.html', question=question, interface=interface, letter=letter)
 
 @app.route('/q11')
@@ -86,10 +89,12 @@ def secondScenario():
 
 @app.route('/secondGame')
 def secondGame():
-    userId = session.get('user', None)
-    letter = userId[0]
-    interface = userId[6:9] +'.png'
-    question = 'q' + userId[7:9]
+    secondSession = ['21', '22']
+    second = random.choice(secondSession)
+    letter = session.get('letter', None)
+    interface = letter + second +'.png'
+    question = 'q' + second
+    session['second'] = letter + second
     return render_template('secondGame.html', question=question, interface=interface, letter=letter)
 
 @app.route('/q21')
@@ -109,10 +114,12 @@ def thirdScenario():
 
 @app.route('/thirdGame')
 def thirdGame():
-    userId = session.get('user', None)
-    letter = userId[0]
-    interface = userId[10:13] +'.png'
-    question = 'q' + userId[11:13]
+    thirdSession = ['31', '32']
+    third = random.choice(thirdSession)
+    letter = session.get('letter', None)
+    interface = letter + third +'.png'
+    question = 'q' + third
+    session['third'] = letter + third
     return render_template('thirdGame.html', question=question, interface=interface, letter=letter)
 
 @app.route('/q31')
@@ -148,8 +155,11 @@ def final():
             
         insert_row_to_users(insertValue)
         print(insertValue)
-        code = session.get('user', None)
-        return render_template('final.html',code=code)
+        
+        number = str(uuid.uuid4())
+        userId = session.get('letter') + '-' + session.get('first') + '-' + session.get('second') + '-' + session.get('third') + '-' + number
+        # code = session.get('user', None)
+        return render_template('final.html',code=userId)
 
 if __name__ == '__main__':  
     app.run(debug=True)
