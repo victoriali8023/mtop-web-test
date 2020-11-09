@@ -13,15 +13,16 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)  # 配置7天有效
 app._static_folder = "./static"
-database_url = subprocess.run(
-    ['heroku', 'config:get', 'DATABASE_URL', '--app', 'your-heroku-app-name'],
-    stdout=subprocess.PIPE,
-).stdout
+# database_url = subprocess.run(
+#     ['heroku', 'config:get', 'DATABASE_URL', '--app', 'your-heroku-app-name'],
+#     stdout=subprocess.PIPE,
+# ).stdout
+DATABASE_URL = os.environ['DATABASE_URL']
 
 
 def insert_row_to_users(value):
 
-    conn = psycopg2.connect(database_url)
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
     insert_user = '''
