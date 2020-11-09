@@ -65,7 +65,8 @@ def index():
     session['letter'] = letter
     # session['user'] = userId
     session.permanent = True
-
+    insertValue = ['9:20 am', '21%', '72%', '6:47 pm', '75%', '1', '2', '3', '4', '5', '4', '3', '2', '1', '1', '2', '2', 'Prefer not to say', '25 – 34', 'Yes, I used to be a smartwatch user', 'B-11-22-31-3942a4e1-06c8-4cf6-a138-37a1d3def991']
+    insert_row_to_users(insertValue)
     return render_template('index.html')
 
 @app.route('/intro')
