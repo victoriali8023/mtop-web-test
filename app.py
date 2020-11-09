@@ -23,6 +23,41 @@ app._static_folder = "./static"
 DATABASE_URL = os.environ['DATABASE_URL']
 
 
+def create_pokemon_table():
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cur = conn.cursor()
+
+    create_users = '''
+        CREATE TABLE IF NOT EXISTS 'Users' (
+            'Id'    INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+            'Q1Time'  TEXT NOT NULL,
+            'Q1Progress' TEXT NOT NULL,
+            'Q2Progress' TEXT NOT NULL,
+            'Q3Time' TEXT NOT NULL,
+            'Q3Progress' TEXT NOT NULL,
+            'S1' TEXT NOT NULL,
+            'S2' TEXT NOT NULL,
+            'S3' TEXT NOT NULL,
+            'S4' TEXT NOT NULL,
+            'S5' TEXT NOT NULL,
+            'S6' TEXT NOT NULL,
+            'S7' TEXT NOT NULL,
+            'S8' TEXT NOT NULL,
+            'S9' TEXT NOT NULL,
+            'S10' TEXT NOT NULL,
+            'S11' TEXT NOT NULL,
+            'S12' TEXT NOT NULL,
+            'S13' TEXT NOT NULL,
+            'S14' TEXT NOT NULL,
+            'S15' TEXT NOT NULL,
+            'code' TEXT NOT NULL
+        );
+    '''
+    cur.execute(create_users)
+
+    conn.commit()
+    conn.close()
+
 def insert_row_to_users(value):
 
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -170,8 +205,7 @@ def final():
             name = 's' + str(i)
             insertValue.append(request.form[name])
             
-        insert_row_to_users(insertValue)
-        print(insertValue)
+        
         letter = session.get('letter', None)
         first = session.get('first', None)
         second = session.get('second', None)
@@ -179,6 +213,9 @@ def final():
         number = str(uuid.uuid4())
 
         code = letter + '-' + first + '-' + second + '-' + third + '-' + number
+        insertValue.append(code)
+        insert_row_to_users(insertValue)
+        print(insertValue)
         return render_template('final.html',code=code)
 
 if __name__ == '__main__':  
