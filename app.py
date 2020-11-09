@@ -29,7 +29,7 @@ def create_pokemon_table():
 
     create_users = '''
         CREATE TABLE IF NOT EXISTS 'Users' (
-            'Id'    INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+            'code' TEXT NOT NULL,
             'Q1Time'  TEXT NOT NULL,
             'Q1Progress' TEXT NOT NULL,
             'Q2Progress' TEXT NOT NULL,
@@ -49,8 +49,7 @@ def create_pokemon_table():
             'S12' TEXT NOT NULL,
             'S13' TEXT NOT NULL,
             'S14' TEXT NOT NULL,
-            'S15' TEXT NOT NULL,
-            'code' TEXT NOT NULL
+            'S15' TEXT NOT NULL
         );
     '''
     cur.execute(create_users)
@@ -63,11 +62,8 @@ def insert_row_to_users(value):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    insert_user = '''
-        INSERT INTO Users
-        VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    '''
-    cur.execute(insert_user, value)
+    cur.execute("INSERT INTO Users (code, Q1Time, Q2Progress, Q2Progress, Q3Time, Q3Progress, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14], value[15], value[16], value[17], value[18], value[19], value[20]))
+    
     conn.commit()
     conn.close()
 
