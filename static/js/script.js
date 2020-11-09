@@ -1,20 +1,20 @@
-fetch("https://mtop-web-test.herokuapp.com/firstScenario").then(response => {
-    return response.text()
-}).then(data => {
-    console.log(data)
-})
+// fetch("https://mtop-web-test.herokuapp.com/firstScenario").then(response => {
+//     return response.text()
+// }).then(data => {
+//     console.log(data)
+// })
 
-fetch("https://mtop-web-test.herokuapp.com/secondScenario").then(response => {
-    return response.text()
-}).then(data => {
-    console.log(data)
-})
+// fetch("https://mtop-web-test.herokuapp.com/secondScenario").then(response => {
+//     return response.text()
+// }).then(data => {
+//     console.log(data)
+// })
 
-fetch("https://mtop-web-test.herokuapp.com/thirdScenario").then(response => {
-    return response.text()
-}).then(data => {
-    console.log(data)
-})
+// fetch("https://mtop-web-test.herokuapp.com/thirdScenario").then(response => {
+//     return response.text()
+// }).then(data => {
+//     console.log(data)
+// })
 
 var name = document.getElementsByClassName('.watch-container');
 

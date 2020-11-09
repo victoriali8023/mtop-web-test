@@ -11,14 +11,16 @@ import subprocess
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.urandom(24)
+# app.config['SECRET_KEY'] = os.urandom(24)
+app.config['SECRET_KEY'] = 'AAAAaaaaaatest'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)  # 配置7天有效
 app._static_folder = "./static"
+# CORS(app)
 # database_url = subprocess.run(
 #     ['heroku', 'config:get', 'DATABASE_URL', '--app', 'your-heroku-app-name'],
 #     stdout=subprocess.PIPE,
 # ).stdout
-# DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = os.environ['DATABASE_URL']
 
 
 def insert_row_to_users(value):
@@ -168,7 +170,7 @@ def final():
             name = 's' + str(i)
             insertValue.append(request.form[name])
             
-        # insert_row_to_users(insertValue)
+        insert_row_to_users(insertValue)
         print(insertValue)
         letter = session.get('letter', None)
         first = session.get('first', None)
