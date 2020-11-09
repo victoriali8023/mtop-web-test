@@ -18,7 +18,7 @@ app._static_folder = "./static"
 #     ['heroku', 'config:get', 'DATABASE_URL', '--app', 'your-heroku-app-name'],
 #     stdout=subprocess.PIPE,
 # ).stdout
-DATABASE_URL = os.environ['DATABASE_URL']
+# DATABASE_URL = os.environ['DATABASE_URL']
 
 
 def insert_row_to_users(value):
@@ -168,7 +168,8 @@ def final():
             name = 's' + str(i)
             insertValue.append(request.form[name])
             
-        insert_row_to_users(insertValue)
+        # insert_row_to_users(insertValue)
+        print(insertValue)
         letter = session.get('letter', None)
         first = session.get('first', None)
         second = session.get('second', None)
