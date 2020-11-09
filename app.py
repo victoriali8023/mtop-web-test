@@ -64,7 +64,7 @@ def insert_row_to_users(value):
     cur = conn.cursor()
 
     insert_user = '''
-        INSERT INTO Effects
+        INSERT INTO Users
         VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     '''
     cur.execute(insert_user, value)
