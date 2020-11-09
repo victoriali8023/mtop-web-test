@@ -13,25 +13,25 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)  # 配置7天有效
 app._static_folder = "./static"
-# database_url = subprocess.run(
-#     ['heroku', 'config:get', 'DATABASE_URL', '--app', 'your-heroku-app-name'],
-#     stdout=subprocess.PIPE,
-# ).stdout
-# DATABASE_URL = os.environ['DATABASE_URL']
+database_url = subprocess.run(
+    ['heroku', 'config:get', 'DATABASE_URL', '--app', 'your-heroku-app-name'],
+    stdout=subprocess.PIPE,
+).stdout
+DATABASE_URL = os.environ['DATABASE_URL']
 
 
-# def insert_row_to_users(value):
+def insert_row_to_users(value):
 
-#     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-#     cur = conn.cursor()
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cur = conn.cursor()
 
-#     insert_user = '''
-#         INSERT INTO Effects
-#         VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-#     '''
-#     cur.execute(insert_user, value)
-#     conn.commit()
-#     conn.close()
+    insert_user = '''
+        INSERT INTO Effects
+        VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    '''
+    cur.execute(insert_user, value)
+    conn.commit()
+    conn.close()
 
 @app.route('/')
 def index():
@@ -104,7 +104,7 @@ def q22():
 def thirdScenario():
     if request.method == 'POST':
         session['q2Progress'] = request.form['progress']
-        
+        print(session.get('q2Progress', None))
         return render_template('thirdScenario.html')
 
 @app.route('/thirdGame')
@@ -145,9 +145,9 @@ def final():
         for i in range(1,16):
             name = 's' + str(i)
             insertValue.append(request.form[name])
-        
-        # insert_row_to_users(value)
-
+            
+        insert_row_to_users(insertValue)
+        print(insertValue)
         code = session.get('user', None)
         return render_template('final.html',code=code)
 
