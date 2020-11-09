@@ -48,7 +48,7 @@ def index():
     # third = letter + random.choice(thirdSession)
     # number = str(uuid.uuid4())
 
-    userId = letter + '-' + first + '-' + second + '-' + third + '-' + number
+    # userId = letter + '-' + first + '-' + second + '-' + third + '-' + number
     session['letter'] = letter
     # session['user'] = userId
     session.permanent = True
