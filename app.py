@@ -17,21 +17,21 @@ app._static_folder = "./static"
 #     ['heroku', 'config:get', 'DATABASE_URL', '--app', 'your-heroku-app-name'],
 #     stdout=subprocess.PIPE,
 # ).stdout
-DATABASE_URL = os.environ['DATABASE_URL']
+# DATABASE_URL = os.environ['DATABASE_URL']
 
 
-def insert_row_to_users(value):
+# def insert_row_to_users(value):
 
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cur = conn.cursor()
+#     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+#     cur = conn.cursor()
 
-    insert_user = '''
-        INSERT INTO Effects
-        VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    '''
-    cur.execute(insert_user, value)
-    conn.commit()
-    conn.close()
+#     insert_user = '''
+#         INSERT INTO Effects
+#         VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+#     '''
+#     cur.execute(insert_user, value)
+#     conn.commit()
+#     conn.close()
 
 @app.route('/')
 def index():
@@ -144,9 +144,9 @@ def final():
     if request.method == 'POST':
         for i in range(1,16):
             name = 's' + str(i)
-            insertValue.append(request.form[name], None)
+            insertValue.append(request.form[name])
         
-        insert_row_to_users(value)
+        # insert_row_to_users(value)
 
         code = session.get('user', None)
         return render_template('final.html',code=code)
