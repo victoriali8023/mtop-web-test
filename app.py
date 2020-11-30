@@ -50,7 +50,7 @@ def insert_row_to_users(value):
 @app.route('/')
 @cross_origin(supports_credentials=True)
 def index():
-    letterList = ['A', 'B', 'C']
+    letterList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', "H"]
     # firstSession = ['11', '12']
     # secondSession = ['21', '22']
     # thirdSession = ['31', '32']
@@ -84,7 +84,7 @@ def firstgame():
 
     letter = session.get('letter', None)
     interface = letter +'1.png'
-    question = 'q11.html'
+    question = 'q11'
     # session['first'] = first
     # session.permanent = True
     return render_template('firstGame.html', question=question, interface=interface, letter=letter)
@@ -108,7 +108,7 @@ def secondScenario():
         session.permanent = True
         console.log(request.form['progress'])
 
-        return render_template('secondScenario.html')
+        return render_template('secondScenario')
 
 @app.route('/secondGame')
 @cross_origin(supports_credentials=True)
@@ -123,7 +123,7 @@ def secondGame():
     # session.permanent = True
 
     interface = letter +'2.png'
-    question = 'q21.html'
+    question = 'q21'
 
     return render_template('secondGame.html', question=question, interface=interface, letter=letter)
 
@@ -156,7 +156,7 @@ def thirdGame():
     # session.permanent = True
 
     interface = letter + '3.png'
-    question = 'q31.html'
+    question = 'q31'
     return render_template('thirdGame.html', question=question, interface=interface, letter=letter)
 
 @app.route('/q31')
