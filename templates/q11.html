@@ -10,19 +10,13 @@
     <form action="/secondScenario" method="POST">
         <div class='form-group'>
             <h3>What was the time you checked last time?</h3>
-                <input type='radio' name='time' value='9:19 am'>9:19 am
-                <input type='radio' name='time' value="9:20 am">9:20 am
-                <input type='radio' name='time' value="9:21 am">9:21 am
-                <input type='radio' name='time' value="9:23 am">9:23 am
+            <input type="text" id="time1" name="time1" requiredminlength="1" maxlength="1" size="2"> : <input type="text" id="name2" name="time2" requiredminlength="2" maxlength="2" size="2">
             
         
         
-            <h3>What is the progress you checked last time?</h3>
+            <h3>What is the progress you checked last time? (write it in number. e.g. 12%)</h3>
             
-                <input type='radio' name='progress' value='3%'>3%</option>
-                <input type='radio' name='progress' value="12%">12%</option>
-                <input type='radio' name='progress' value="21%">21%</option>
-                <input type='radio' name='progress' value="30%">30%</option>
+            <input type="text" id="progress" name="progress" requiredminlength="2" maxlength="8" size="6">
         
         </div>
         <input type="submit" value="Submit Form"/>

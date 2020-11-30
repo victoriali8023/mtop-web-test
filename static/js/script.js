@@ -31,7 +31,6 @@ $(document).keypress(function(e) {
       }
   },5000);
   window.setTimeout(function(){
-    //randomnize the inerface
     window.location.href = question;
   }, 10000);
 });
