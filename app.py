@@ -101,14 +101,14 @@ def q12():
 @cross_origin(supports_credentials=True)
 def secondScenario():
     if request.method == 'POST':
-        # session['q1Time'] = request.form['time']
-        # session['q1Progress'] = request.form['progress']
+        
         session['q1Time'] = request.form['time1'] + ':' + request.form['time2']
         session['q1Progress'] = request.form['progress']
         session.permanent = True
-        console.log(request.form['progress'])
+        
+        test = session.get('q1Time', None)
 
-        return render_template('secondScenario')
+        return render_template('secondScenario.html',test=test)
 
 @app.route('/secondGame')
 @cross_origin(supports_credentials=True)
