@@ -105,10 +105,8 @@ def secondScenario():
         session['q1Time'] = request.form['time1'] + ':' + request.form['time2']
         session['q1Progress'] = request.form['progress']
         session.permanent = True
-        
-        test = session.get('q1Time', None)
 
-        return render_template('secondScenario.html',test=test)
+        return render_template('secondScenario.html')
 
 @app.route('/secondGame')
 @cross_origin(supports_credentials=True)
