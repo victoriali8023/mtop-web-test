@@ -50,7 +50,7 @@ def insert_row_to_users(value):
 @app.route('/')
 @cross_origin(supports_credentials=True)
 def index():
-    letterList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', "H"]
+    letterList = ['A', 'D', 'F']
     # firstSession = ['11', '12']
     # secondSession = ['21', '22']
     # thirdSession = ['31', '32']
@@ -70,7 +70,8 @@ def index():
 
 @app.route('/intro')
 def intro():
-    return render_template('intro.html')
+    letter = session.get('letter', None)
+    return render_template('intro.html', letter=letter)
 
 @app.route('/firstScenario')
 def firstScenario():

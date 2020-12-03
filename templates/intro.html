@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_other.css') }}" />
   <title>Intro</title>
+  <script>
+    var letter = '{{letter}}'
+    var dict = {'A': "https://drive.google.com/file/d/1VnL_DuSvYe_DO1qAjKpMnZj1txNchdye/preview",
+                'D': "https://drive.google.com/file/d/1z8ue4KFiz-tn2aSGIT2HGV6QNn39DWho/preview",
+                'F': "https://drive.google.com/file/d/1ZFXVswU-acgWJtAVbNbgs5NSLVCy4w5w/preview"}
+    document.getElementById('video').src = dict[letter]
+  </script>
 </head>
 <body>
     <h1>
@@ -21,10 +28,11 @@
 
         <p>This is the illsutration video of the smartwach interface that you will see.</p>
         <!-- <video width="400" height='400' controls>
-          <source src="static/videos/AVideo.mp4" type="video/mp4">
-          <source src="static/videos/AVideo.mp4" type="video/ogg">
+          <source src={{ url_for('static', filename="videos/AVideo.mp4") }} type="video/mp4">
         </video> -->
-        <iframe src="https://drive.google.com/file/d/1z8ue4KFiz-tn2aSGIT2HGV6QNn39DWho/preview" width="640" height="480"></iframe>
+        <iframe id='video' src="" width="640" height="480"></iframe>
+        
+        
       
     </div>
     <a href="firstScenario">Start</a>
