@@ -2,11 +2,32 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_other.css') }}" />
+  <style>
+    #agreeBtn {
+      background-color: #327DA9;
+      border: 1px solid #327DA9;
+      color: white;
+      padding: 14px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+    #disBtn {
+      border: 1px solid #327DA9;
+      color: black;
+      padding: 14px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .selection {
+      margin: auto;
+    }
+  </style>
   <title>Consent Form</title>
 </head>
 <body>
-    <h1>consent form</h1>
+    <h1>Consent Form</h1>
   
     <h3>Study title: Glanceable Feedback Performance on Smartwatch</h3>
 
@@ -15,7 +36,7 @@
     If you start the survey, you can always change your mind and stop at any time.</p>
     
 
-    <p><Strong>What is the purpose of this study?</Strong> We want to learn how factors affect the performance of the smartwatch display.</p>
+    <p><Strong>What is the purpose of this study?</Strong> We want to learn how factors (i.e. salience, granularity, and stylization) affect the performance of the smartwatch display.</p>
     
 
     <p><Strong>What will I do?</Strong> This test will let you play game three times and ask questions about smartwatch interface, like what is the current progress and what is the current time. The test will take about 20 minutes.</p>
@@ -23,7 +44,7 @@
 
     <p><Strong>Risks:</Strong></p>
     <ul>
-      <li>We will give you the code for you to fill in Amazon at the end of the study. Make sure you have read Amazon’s MTurk participant and privacy agreements to understand how your personal information may be used or disclosed.
+      <li>We will give you the code for you to fill in Amazon Mechnical Turk at the end of the study. Make sure you have read Amazon’s MTurk participant and privacy agreements to understand how your personal information may be used or disclosed.
     Breach of confidentiality: There is a chance your data could be seen by someone who shouldn’t have access to it. We’re minimizing this risk in the following ways:
     Data is anonymous. </li>
       <li>We’ll store all electronic data on a password-protected, encrypted computer. </li>
@@ -53,8 +74,8 @@
 
     <p>Please print or save this screen if you want to be able to access the information later.</p>
     <ul>
-      <li>IRB #: [insert once received]</li>
-      <li>IRB Approval Date: [insert once received]</li>
+      <li>IRB #: IRB00000246</li>
+      <li>IRB Approval Date: Dec 1, 2020</li>
     </ul>
     
     <p><Strong>Agreement to Participate: </Strong>Your participation is completely voluntary, and you can withdraw at any time.
@@ -64,7 +85,10 @@
     </ul>
     
     <p>If you meet these criteria and would like to take the test, click the button below to start.</p>
-
-    <a href="intro">Agree</a>
+    <div class='selection'>
+      <a id='disBtn' href="disagree" fontsize='20pt'>Disagree</a>
+      <a id='agreeBtn' href="intro">Agree</a>
+    </div>
+    
 </body>
 </html>
