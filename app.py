@@ -74,7 +74,7 @@ def intro():
     return render_template('intro.html', letter=letter)
 
 @app.route('/disagree')
-def firstScenario():
+def disagree():
     return render_template('disagree.html')
 
 @app.route('/firstScenario')
