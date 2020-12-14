@@ -126,7 +126,7 @@ def disagree():
 def firstScenario():
     order = session.get('first', None)
     scenarioPage = order +'Scenario.html'
-    consol.log(scenarioPage)
+    
     return render_template(scenarioPage)
 
 @app.route('/firstGame')
