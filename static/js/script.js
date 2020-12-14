@@ -32,7 +32,7 @@ $(document).keypress(function(e) {
   },5000);
   window.setTimeout(function(){
     window.location.href = question;
-  }, 150000);
+  }, 15000);
 });
 
 

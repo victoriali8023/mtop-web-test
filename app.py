@@ -126,6 +126,7 @@ def disagree():
 def firstScenario():
     order = session.get('first', None)
     scenarioPage = order +'Scenario.html'
+    consol.log(scenarioPage)
     return render_template(scenarioPage)
 
 @app.route('/firstGame')
@@ -138,6 +139,7 @@ def firstgame():
 
     interfaceDict = {'first':'1.png', 'second':'2.png', 'third':'3.png'}
     interface = letter + interfaceDict[order]
+    
     question = 'q11'
     # session['first'] = first
     # session.permanent = True
