@@ -106,6 +106,7 @@ def index():
     session['third'] = scenarioList[2]
 
     code = letter + '-' + scenarioList[0] + '-' + scenarioList[1] + '-' + scenarioList[2] + '-' + number
+    print(code)
     session['code'] = code
     # session['user'] = userId
     session.permanent = True
@@ -126,8 +127,8 @@ def disagree():
 def firstScenario():
     order = session.get('first', None)
     scenarioPage = order +'Scenario.html'
-    
-    return render_template(scenarioPage)
+
+    return render_template(scenarioPage, next='firstGame')
 
 @app.route('/firstGame')
 @cross_origin(supports_credentials=True)
@@ -172,7 +173,7 @@ def secondScenario():
         insert_first_pop_question_to_users(value)
         scenarioPage = order +'Scenario.html'
 
-        return render_template(scenarioPage)
+        return render_template(scenarioPage, next='secondGame')
 
 @app.route('/secondGame')
 @cross_origin(supports_credentials=True)
@@ -218,7 +219,7 @@ def thirdScenario():
         update_second_pop_question_to_users(value, code)
         scenarioPage = order +'Scenario.html'
 
-        return render_template(scenarioPage)
+        return render_template(scenarioPage, next='thirdGame')
 
 @app.route('/thirdGame')
 @cross_origin(supports_credentials=True)
