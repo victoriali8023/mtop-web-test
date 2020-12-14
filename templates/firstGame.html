@@ -3,6 +3,15 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
     <!-- <script src="{{ url_for('static', filename='js/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <script type="text/javascript">
+
+        var question = '{{question}}'
+        var interface = '{{interface}}'
+        var letter = '{{letter}}'
+    </script>
+    <script src="static/js/script.js" async></script>
     <title>Game</title>
 </head>
 <body>
@@ -323,13 +332,4 @@
     </div>
    
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    
-<script type="text/javascript">
-
-    var question = '{{question}}'
-    var interface = '{{interface}}'
-    var letter = '{{letter}}'
-</script>
-<script src="static/js/script.js" async></script>
 </html>
