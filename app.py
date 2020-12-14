@@ -168,8 +168,9 @@ def secondScenario():
         value = [code, time, progress]
         
         insert_first_pop_question_to_users(value)
+        scenarioPage = order +'Scenario.html'
 
-        return render_template('{order}Scenario.html')
+        return render_template(scenarioPage)
 
 @app.route('/secondGame')
 @cross_origin(supports_credentials=True)
@@ -188,7 +189,8 @@ def secondGame():
     interface = letter + interfaceDict[order]
     question = 'q21'
 
-    return render_template('{order}Game.html', question=question, interface=interface, letter=letter)
+    gamePage = order + 'Game.html'
+    return render_template(gamePage, question=question, interface=interface, letter=letter)
 
 @app.route('/q21')
 def q21():
@@ -212,8 +214,9 @@ def thirdScenario():
         
 
         update_second_pop_question_to_users(value, code)
+        scenarioPage = order +'Scenario.html'
 
-        return render_template('{order}Scenario.html')
+        return render_template(scenarioPage)
 
 @app.route('/thirdGame')
 @cross_origin(supports_credentials=True)
@@ -232,7 +235,9 @@ def thirdGame():
     interface = letter + interfaceDict[order]
     question = 'q31'
 
-    return render_template('{order}Game.html', question=question, interface=interface, letter=letter)
+    gamePage = order + 'Game.html'
+
+    return render_template(gamePage, question=question, interface=interface, letter=letter)
 
 @app.route('/q31')
 def q31():
