@@ -54,7 +54,7 @@ def update_second_pop_question_to_users(value, code):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute("UPDATE Users SET Q2Progress = {value} WHERE code = {code}")
+    cur.execute("UPDATE Users SET Q2Progress = ? WHERE code = ?", (value, code))
 
     conn.commit()
     conn.close()
@@ -66,7 +66,8 @@ def update_third_pop_question_to_users(time, progress, code):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute("UPDATE Users SET (Q3Time, Q3Progress) = ({time}, {progress}) WHERE code = {code}")
+    cur.execute("UPDATE Users SET (Q3Time, Q3Progress) = (?, ?) WHERE code = ?", (time, progress, code))
+
 
     conn.commit()
     conn.close()
@@ -77,7 +78,7 @@ def update_final_question_to_users(value, code):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute("UPDATE Users SET (S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15) = ({value[0]}, {value[1]}, {value[2]}, {value[3]}, {value[4]}, {value[5]}, {value[6]}, {value[7]}, {value[8]}, {value[9]}, {value[10]}, {value[11]}, {value[12]}, {value[13]}, {value[14]}) WHERE code = {code}")
+    cur.execute("UPDATE Users SET (S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15) = (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE code = ?", (value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14], code))
  
     conn.commit()
     conn.close()
