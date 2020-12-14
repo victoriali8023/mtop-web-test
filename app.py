@@ -147,7 +147,7 @@ def firstgame():
 
     letter = session.get('letter', None)
     interface = session.get('interface1', None)
-    gamePage = session.get['page1', None]
+    gamePage = session.get('page1', None)
 
     question = 'q11'
     # session['first'] = first
