@@ -2,7 +2,17 @@
 <html>
 <head>
     <meta charset="utf8"/>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_other.css') }}" />
+    <style>
+        #submit {
+          background-color: #327DA9;
+          border: 1px solid #327DA9;
+          color: white;
+          padding: 14px 25px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+        }
+    </style>
     <title>Question</title>
 </head>
 <body>
@@ -19,7 +29,7 @@
             <input type="text" id="progress" name="progress" requiredminlength="2" maxlength="8" size="6">
         
         </div>
-        <input type="submit" value="Submit Form"/>
+        <input id='submit' type="submit" value="Submit Form"/>
     </form>
 </body>
 </html>

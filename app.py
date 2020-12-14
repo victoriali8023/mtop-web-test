@@ -28,7 +28,7 @@ def create_user_table():
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    create_users = "CREATE TABLE IF NOT EXISTS Users (code TEXT NOT NULL, Q1Time TEXT NOT NULL, Q1Progress TEXT NOT NULL, Q2Progress TEXT NOT NULL, Q3Time TEXT NOT NULL, Q3Progress TEXT NOT NULL, S1 TEXT NOT NULL, S2 TEXT NOT NULL, S3 TEXT NOT NULL, S4 TEXT NOT NULL, S5 TEXT NOT NULL, S6 TEXT NOT NULL, S7 TEXT NOT NULL, S8 TEXT NOT NULL, S9 TEXT NOT NULL, S10 TEXT NOT NULL, S11 TEXT NOT NULL, S12 TEXT NOT NULL, S13 TEXT NOT NULL, S14 TEXT NOT NULL, S15 TEXT NOT NULL);"
+    create_users = "CREATE TABLE IF NOT EXISTS Users (code TEXT NOT NULL, complete TEXT NOT NULL, Q1Time TEXT NOT NULL, Q1Progress TEXT NOT NULL, Q2Progress TEXT NOT NULL, Q3Time TEXT NOT NULL, Q3Progress TEXT NOT NULL, S1 TEXT NOT NULL, S2 TEXT NOT NULL, S3 TEXT NOT NULL, S4 TEXT NOT NULL, S5 TEXT NOT NULL, S6 TEXT NOT NULL, S7 TEXT NOT NULL, S8 TEXT NOT NULL, S9 TEXT NOT NULL, S10 TEXT NOT NULL, S11 TEXT NOT NULL, S12 TEXT NOT NULL, S13 TEXT NOT NULL, S14 TEXT NOT NULL, S15 TEXT NOT NULL);"
     
 
     cur.execute(create_users)
@@ -36,14 +36,49 @@ def create_user_table():
     conn.commit()
     conn.close()
 
-def insert_row_to_users(value):
+def insert_first_pop_question_to_users(value):
 
     # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO Users (code, Q1Time, Q1Progress, Q2Progress, Q3Time, Q3Progress, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14], value[15], value[16], value[17], value[18], value[19], value[20]))
-    print('inserted', value)
+    cur.execute("INSERT INTO Users (code, complete, Q1Time, Q1Progress, Q2Progress, Q3Time, Q3Progress, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], '', value[1], value[2], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
+
+    conn.commit()
+    conn.close()
+
+
+def update_second_pop_question_to_users(value, code):
+
+    # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cur = conn.cursor()
+
+    cur.execute("UPDATE Users SET Q2Progress = {value} WHERE code = {code}")
+
+    conn.commit()
+    conn.close()
+
+
+def update_third_pop_question_to_users(time, progress, code):
+
+    # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cur = conn.cursor()
+
+    cur.execute("UPDATE Users SET (Q3Time, Q3Progress) = ({time}, {progress}) WHERE code = {code}")
+
+    conn.commit()
+    conn.close()
+
+def update_final_question_to_users(value, code):
+
+    # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cur = conn.cursor()
+
+    cur.execute("UPDATE Users SET (S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15) = ({value[0]}, {value[1]}, {value[2]}, {value[3]}, {value[4]}, {value[5]}, {value[6]}, {value[7]}, {value[8]}, {value[9]}, {value[10]}, {value[11]}, {value[12]}, {value[13]}, {value[14]}) WHERE code = {code}")
+ 
     conn.commit()
     conn.close()
 
@@ -51,11 +86,14 @@ def insert_row_to_users(value):
 @cross_origin(supports_credentials=True)
 def index():
     letterList = ['A', 'B', 'C', 'D', 'E', 'G', 'H']
+    scenarioList = ['first', 'second', 'third']
     # firstSession = ['11', '12']
     # secondSession = ['21', '22']
     # thirdSession = ['31', '32']
 
     letter = random.choice(letterList)
+    random.shuffle(scenarioList)
+    number = str(uuid.uuid4())
     # first = letter + random.choice(firstSession)
     # second = letter + random.choice(secondSession)
     # third = letter + random.choice(thirdSession)
@@ -63,6 +101,12 @@ def index():
 
     # userId = letter + '-' + first + '-' + second + '-' + third + '-' + number
     session['letter'] = letter
+    session['first'] = scenarioList[0]
+    session['second'] = scenarioList[1]
+    session['third'] = scenarioList[2]
+
+    code = letter + '-' + scenarioList[0] + '-' + scenarioList[1] + '-' + scenarioList[2] + '-' + number
+    session['code'] = code
     # session['user'] = userId
     session.permanent = True
 
@@ -71,6 +115,7 @@ def index():
 @app.route('/intro')
 def intro():
     letter = session.get('letter', None)
+    
     return render_template('intro.html', letter=letter)
 
 @app.route('/disagree')
@@ -79,20 +124,23 @@ def disagree():
 
 @app.route('/firstScenario')
 def firstScenario():
-    return render_template('firstScenario.html')
+    order = session.get('first', None)
+    return render_template('{order}Scenario.html')
 
 @app.route('/firstGame')
 @cross_origin(supports_credentials=True)
 def firstgame():
     # firstSession = ['11', '12']
     # first = random.choice(firstSession)
-
+    order = session.get('first', None)
     letter = session.get('letter', None)
-    interface = letter +'1.png'
+
+    interfaceDict = {'first':'1.png', 'second':'2.png', 'third':'3.png'}
+    interface = letter + interfaceDict[order]
     question = 'q11'
     # session['first'] = first
     # session.permanent = True
-    return render_template('firstGame.html', question=question, interface=interface, letter=letter)
+    return render_template('{order}Game.html', question=question, interface=interface, letter=letter)
 
 @app.route('/q11')
 def q11():
@@ -106,12 +154,20 @@ def q12():
 @cross_origin(supports_credentials=True)
 def secondScenario():
     if request.method == 'POST':
+        time = request.form['time1'] + ':' + request.form['time2']
+        progress = request.form['progress']
         
-        session['q1Time'] = request.form['time1'] + ':' + request.form['time2']
-        session['q1Progress'] = request.form['progress']
+        session['q1Time'] = time
+        session['q1Progress'] = progress
         session.permanent = True
 
-        return render_template('secondScenario.html')
+        order = session.get('second', None)
+        code = session.get('code', None)
+        value = [code, time, progress]
+        
+        insert_first_pop_question_to_users(value)
+
+        return render_template('{order}Scenario.html')
 
 @app.route('/secondGame')
 @cross_origin(supports_credentials=True)
@@ -120,15 +176,17 @@ def secondGame():
     # second = random.choice(secondSession)
 
     letter = session.get('letter', None)
+    order = session.get('second', None)
     # interface = letter + second +'.png'
     # question = 'q' + second
     # session['second'] = second
     # session.permanent = True
 
-    interface = letter +'2.png'
+    interfaceDict = {'first':'1.png', 'second':'2.png', 'third':'3.png'}
+    interface = letter + interfaceDict[order]
     question = 'q21'
 
-    return render_template('secondGame.html', question=question, interface=interface, letter=letter)
+    return render_template('{order}Game.html', question=question, interface=interface, letter=letter)
 
 @app.route('/q21')
 def q21():
@@ -142,9 +200,18 @@ def q22():
 @cross_origin(supports_credentials=True)
 def thirdScenario():
     if request.method == 'POST':
-        session['q2Progress'] = request.form['progress']
+        value = request.form['progress']
+
+        session['q2Progress'] = value
         session.permanent = True
-        return render_template('thirdScenario.html')
+
+        order = session.get('third', None)
+        code = session.get('code', None)
+        
+
+        update_second_pop_question_to_users(value, code)
+
+        return render_template('{order}Scenario.html')
 
 @app.route('/thirdGame')
 @cross_origin(supports_credentials=True)
@@ -153,14 +220,17 @@ def thirdGame():
     # third = random.choice(thirdSession)
 
     letter = session.get('letter', None)
+    order = session.get('third', None)
     # interface = letter + third +'.png'
     # question = 'q' + third
     # session['third'] = third
     # session.permanent = True
 
-    interface = letter + '3.png'
+    interfaceDict = {'first':'1.png', 'second':'2.png', 'third':'3.png'}
+    interface = letter + interfaceDict[order]
     question = 'q31'
-    return render_template('thirdGame.html', question=question, interface=interface, letter=letter)
+
+    return render_template('{order}Game.html', question=question, interface=interface, letter=letter)
 
 @app.route('/q31')
 def q31():
@@ -174,9 +244,17 @@ def q32():
 @cross_origin(supports_credentials=True)
 def questionnaire():
     if request.method == 'POST':
-        session['q3Time'] = request.form['time1'] + ':' + request.form['time2']
-        session['q3Progress'] = request.form['progress']
+        time = request.form['time1'] + ':' + request.form['time2']
+        progress = request.form['progress']
+
+        session['q3Time'] = time
+        session['q3Progress'] = progress
         session.permanent = True
+
+        
+        code = session.get('code', None)
+
+        update_third_pop_question_to_users(time, progress, code)
         return render_template('questionnaire.html')
 
 
@@ -184,30 +262,22 @@ def questionnaire():
 @cross_origin(supports_credentials=True)
 def final():
     insertValue = []
-    insertValue.append(session.get('q1Time', None))
-    insertValue.append(session.get('q1Progress', None))
-    insertValue.append(session.get('q2Progress', None))
-    insertValue.append(session.get('q3Time', None))
-    insertValue.append(session.get('q3Progress', None))
+    # insertValue.append(session.get('q1Time', None))
+    # insertValue.append(session.get('q1Progress', None))
+    # insertValue.append(session.get('q2Progress', None))
+    # insertValue.append(session.get('q3Time', None))
+    # insertValue.append(session.get('q3Progress', None))
     
     if request.method == 'POST':
         for i in range(1,16):
             name = 's' + str(i)
             insertValue.append(request.form[name])
             
-        
-        letter = session.get('letter', None)
-        # first = session.get('first', None)
-        # second = session.get('second', None)
-        # third = session.get('third', None)
-        number = str(uuid.uuid4())
-
-        # code = letter + '-' + first + '-' + second + '-' + third + '-' + number
-        code = letter + '-' + number
-        insertValue.insert(0, code)
         create_user_table()
-        insert_row_to_users(insertValue)
-        # print(insertValue)
+
+        code = session.get('code', None)
+        update_final_question_to_users(insertValue, code)
+
         return render_template('final.html',code=code)
 
 if __name__ == '__main__':  

@@ -43,10 +43,11 @@
         <iframe id='video' src="" width="640" height="480"></iframe>
     
     </div>
-    <a href="firstScenario">Start</a>
+    <a id="link" href="firstScenario">Start</a>
 </body>  
 <script>
     var letter = '{{letter}}'
+
     var dict = {'A': "https://drive.google.com/file/d/1VnL_DuSvYe_DO1qAjKpMnZj1txNchdye/preview",
                 'B': "https://drive.google.com/file/d/1A2fpotkp5ujxhJbk-Ur0a7t52ZXHojmT/preview",
                 'C': "https://drive.google.com/file/d/10wfOUZCUflIR85y9ZlffPH0fX0_eF8FX/preview",
@@ -56,5 +57,6 @@
                 'G': "https://drive.google.com/file/d/1XKJ-mooQnBRbp2h595xU6-lo8RoSAorh/preview",
                 'H': "https://drive.google.com/file/d/1s2mvEkO-zYW3KpWTDUhyKfK4YRz6Mlu7/preview"}
     document.getElementById('video').src = dict[letter]
+
   </script>
 </html>
