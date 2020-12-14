@@ -125,7 +125,8 @@ def disagree():
 @app.route('/firstScenario')
 def firstScenario():
     order = session.get('first', None)
-    return render_template('{order}Scenario.html')
+    scenarioPage = order +'Scenario.html'
+    return render_template(scenarioPage)
 
 @app.route('/firstGame')
 @cross_origin(supports_credentials=True)
@@ -140,7 +141,8 @@ def firstgame():
     question = 'q11'
     # session['first'] = first
     # session.permanent = True
-    return render_template('{order}Game.html', question=question, interface=interface, letter=letter)
+    gamePage = order + 'Game.html'
+    return render_template(gamePage, question=question, interface=interface, letter=letter)
 
 @app.route('/q11')
 def q11():
