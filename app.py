@@ -42,7 +42,7 @@ def insert_first_pop_question_to_users(value):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO Users (code, Q1Time, Q1Progress, Q2Progress, Q3Time, Q3Progress, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], value[1], value[2], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
+    cur.execute("INSERT INTO Users (code, Q1Time, Q1Progress, Q2Progress, Q3Time, Q3Progress, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], value[1], value[2], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
 
     conn.commit()
     conn.close()
@@ -106,7 +106,7 @@ def index():
     session['third'] = scenarioList[2]
 
     code = letter + '-' + scenarioList[0] + '-' + scenarioList[1] + '-' + scenarioList[2] + '-' + number
-    print(code)
+    
     session['code'] = code
     # session['user'] = userId
     session.permanent = True
