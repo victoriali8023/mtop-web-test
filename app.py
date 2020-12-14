@@ -127,7 +127,15 @@ def disagree():
 @app.route('/firstScenario')
 def firstScenario():
     order = session.get('first', None)
+    letter = session.get('letter', None)
+
     scenarioPage = order +'Scenario.html'
+    interfaceDict = {'first':'1.png', 'second':'2.png', 'third':'3.png'}
+    interface = letter + interfaceDict[order]
+    gamePage = order + 'Game.html'
+
+    session['interface1'] = interface
+    session['page1'] = gamePage
 
     return render_template(scenarioPage, next='firstGame')
 
@@ -136,16 +144,15 @@ def firstScenario():
 def firstgame():
     # firstSession = ['11', '12']
     # first = random.choice(firstSession)
-    order = session.get('first', None)
-    letter = session.get('letter', None)
 
-    interfaceDict = {'first':'1.png', 'second':'2.png', 'third':'3.png'}
-    interface = letter + interfaceDict[order]
-    
+    letter = session.get('letter', None)
+    interface = session.get('interface1', None)
+    gamePage = session.get['page1', None]
+
     question = 'q11'
     # session['first'] = first
     # session.permanent = True
-    gamePage = order + 'Game.html'
+    
     return render_template(gamePage, question=question, interface=interface, letter=letter)
 
 @app.route('/q11')
