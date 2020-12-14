@@ -1,4 +1,5 @@
 
+
 var name = document.getElementsByClassName('.watch-container');
 
 document.getElementById("interface").src = 'static/images/pilot_study_photos/'+ letter + '/' + interface;
@@ -15,7 +16,7 @@ $(document).keypress(function(e) {
   },5000);
   window.setTimeout(function(){
     window.location.href = question;
-  }, 5000);
+  }, 20000);
 });
 
 
@@ -161,7 +162,7 @@ class MixOrMatch {
 function ready() {
   let overlays = Array.from(document.getElementsByClassName('overlay-text'));
   let cards = Array.from(document.getElementsByClassName('card'));
-  let game = new MixOrMatch(20, cards);
+  let game = new MixOrMatch(150, cards);
 
   overlays.forEach(overlay => {
     overlay.addEventListener('click', () => {
