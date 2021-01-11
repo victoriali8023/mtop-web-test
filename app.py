@@ -178,7 +178,7 @@ def secondScenario():
         order = session.get('second', None)
         code = session.get('code', None)
         letter = code[0]
-        interfaceOrder = code[2:]
+        interfaceOrder = code[2:21]
         value = [code, letter, interfaceOrder, time, progress]
         
         insert_first_pop_question_to_users(value)
