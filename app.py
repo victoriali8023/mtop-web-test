@@ -106,6 +106,7 @@ def index():
     session['code'] = code
     # session['user'] = userId
     session.permanent = True
+    create_user_table()
 
     return render_template('index.html')
 
@@ -118,6 +119,11 @@ def intro():
 @app.route('/disagree')
 def disagree():
     return render_template('disagree.html')
+
+@app.route('/practice')
+def practice():
+    
+    return render_template('practicePage.html')
 
 @app.route('/firstScenario')
 def firstScenario():
@@ -289,7 +295,7 @@ def final():
             name = 's' + str(i)
             insertValue.append(request.form[name])
             
-        create_user_table()
+        # create_user_table()
 
         code = session.get('code', None)
         completion = 'Yes'
