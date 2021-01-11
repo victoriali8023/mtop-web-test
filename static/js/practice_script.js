@@ -2,7 +2,7 @@
 
 var name = document.getElementsByClassName('.watch-container');
 
-// document.getElementById("interface").src = 'static/images/pilot_study_photos/'+ letter + '/' + interface;
+document.getElementById("interface").src = 'static/images/practice.png';
 
 $(document).keypress(function(e) {
 	if(e.which == 13) {
