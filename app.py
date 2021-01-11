@@ -28,9 +28,8 @@ def create_user_table():
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    create_users = "CREATE TABLE IF NOT EXISTS Users (code TEXT NOT NULL, Q1Time TEXT NOT NULL, Q1Progress TEXT NOT NULL, Q2Progress TEXT NOT NULL, Q3Time TEXT NOT NULL, Q3Progress TEXT NOT NULL, S1 TEXT NOT NULL, S2 TEXT NOT NULL, S3 TEXT NOT NULL, S4 TEXT NOT NULL, S5 TEXT NOT NULL, S6 TEXT NOT NULL, S7 TEXT NOT NULL, S8 TEXT NOT NULL, S9 TEXT NOT NULL, S10 TEXT NOT NULL, S11 TEXT NOT NULL, S12 TEXT NOT NULL, S13 TEXT NOT NULL, S14 TEXT NOT NULL, S15 TEXT NOT NULL);"
+    create_users = "CREATE TABLE IF NOT EXISTS Participants (Code TEXT NOT NULL, Interface TEXT NOT NULL, InterfaceOrder TEXT NOT NULL, CompletionThreeQuizzes TEXT NOT NULL, CompletionAll TEXT NOT NULL, Q1Time TEXT NOT NULL, Q1Progress TEXT NOT NULL, Q2Progress TEXT NOT NULL, Q3Time TEXT NOT NULL, Q3Progress TEXT NOT NULL, S1 TEXT NOT NULL, S2 TEXT NOT NULL, S3 TEXT NOT NULL, S4 TEXT NOT NULL, S5 TEXT NOT NULL, S6 TEXT NOT NULL, S7 TEXT NOT NULL, S8 TEXT NOT NULL, S9 TEXT NOT NULL, S10 TEXT NOT NULL, S11 TEXT NOT NULL, S12 TEXT NOT NULL, S13 TEXT NOT NULL, S14 TEXT NOT NULL, S15 TEXT NOT NULL);"
     
-
     cur.execute(create_users)
 
     conn.commit()
@@ -38,11 +37,10 @@ def create_user_table():
 
 def insert_first_pop_question_to_users(value):
 
-    # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO Users (code, Q1Time, Q1Progress, Q2Progress, Q3Time, Q3Progress, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], value[1], value[2], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
+    cur.execute("INSERT INTO Participants (Code, Interface, InterfaceOrder, CompletionThreeQuizzes, CompletionAll, Q1Time, Q1Progress, Q2Progress, Q3Time, Q3Progress, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], value[1], value[2], '', '', value[3], value[4], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
 
     conn.commit()
     conn.close()
@@ -50,35 +48,32 @@ def insert_first_pop_question_to_users(value):
 
 def update_second_pop_question_to_users(value, code):
 
-    # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute('''UPDATE Users SET Q2Progress = %s WHERE code = %s''', (value, code))
+    cur.execute('''UPDATE Participants SET Q2Progress = %s WHERE code = %s''', (value, code))
 
     conn.commit()
     conn.close()
 
 
-def update_third_pop_question_to_users(time, progress, code):
+def update_third_pop_question_to_users(time, progress, completion, code):
 
-    # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute('''UPDATE Users SET (Q3Time, Q3Progress) = (%s, %s) WHERE code = %s''', (time, progress, code))
+    cur.execute('''UPDATE Participants SET (Q3Time, Q3Progress, CompletionThreeQuizzes) = (%s, %s, %s) WHERE code = %s''', (time, progress, completion, code))
 
 
     conn.commit()
     conn.close()
 
-def update_final_question_to_users(value, code):
+def update_final_question_to_users(completion, value, code):
 
-    # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute('''UPDATE Users SET (S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15) = (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) WHERE code = %s''', (value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14], code))
+    cur.execute('''UPDATE Participants SET (CompletionAll, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15) = (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) WHERE code = %s''', (completion, value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14], code))
  
     conn.commit()
     conn.close()
@@ -176,7 +171,9 @@ def secondScenario():
 
         order = session.get('second', None)
         code = session.get('code', None)
-        value = [code, time, progress]
+        letter = code[0]
+        interfaceOrder = code[2:]
+        value = [code, letter, interfaceOrder, time, progress]
         
         insert_first_pop_question_to_users(value)
         scenarioPage = order +'Scenario.html'
@@ -271,8 +268,9 @@ def questionnaire():
 
         
         code = session.get('code', None)
+        completion = 'Yes'
 
-        update_third_pop_question_to_users(time, progress, code)
+        update_third_pop_question_to_users(time, progress, completion, code)
         return render_template('questionnaire.html')
 
 
@@ -294,7 +292,8 @@ def final():
         create_user_table()
 
         code = session.get('code', None)
-        update_final_question_to_users(insertValue, code)
+        completion = 'Yes'
+        update_final_question_to_users(completion, insertValue, code)
 
         return render_template('final.html',code=code)
 
