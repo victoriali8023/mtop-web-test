@@ -12,3 +12,13 @@ a.button {
     color: initial;
 }
 
+.watch-container {
+    flex: 0.1;
+    visibility: hidden;
+}
+
+.watch-container.show{
+    flex: 0.1;
+    margin-top: 200px;
+    visibility:visible;
+}
