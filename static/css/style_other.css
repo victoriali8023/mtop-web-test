@@ -20,5 +20,5 @@ a.button {
 .watch-container.show{
     flex: 0.1;
     margin-top: 200px;
-    visibility:visible;
+    visibility: visible;
 }
