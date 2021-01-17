@@ -1,8 +1,8 @@
 
 
-var name = document.getElementsByClassName('.watch-container');
+var name = document.getElementsByIdName('.watch-container');
 
-// document.getElementById("interface").src = 'static/images/practice.png';
+document.getElementById("interface").src = 'static/images/practice.png';
 
 $(document).keypress(function(e) {
 	if(e.which == 13) {
