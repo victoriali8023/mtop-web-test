@@ -81,7 +81,7 @@ def update_final_question_to_users(completion, value, code):
 @app.route('/')
 @cross_origin(supports_credentials=True)
 def index():
-    letterList = ['A', 'B', 'C', 'D', 'E', 'G', 'H']
+    letterList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q']
     scenarioList = ['first', 'second', 'third']
     # firstSession = ['11', '12']
     # secondSession = ['21', '22']
