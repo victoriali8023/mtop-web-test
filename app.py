@@ -226,7 +226,7 @@ def thirdScenario():
         progress = request.form['progress']
         
         session['q1Time'] = time
-        session['q2Progress'] = value
+        session['q2Progress'] = progress
         session.permanent = True
 
         order = session.get('third', None)
