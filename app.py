@@ -28,7 +28,7 @@ def create_user_table():
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    create_users = "CREATE TABLE IF NOT EXISTS Participants (Code TEXT NOT NULL, Interface TEXT NOT NULL, InterfaceOrder TEXT NOT NULL, CompletionThreeQuizzes TEXT NOT NULL, CompletionAll TEXT NOT NULL, Q1Time TEXT NOT NULL, Q1Progress TEXT NOT NULL, Q2Progress TEXT NOT NULL, Q3Time TEXT NOT NULL, Q3Progress TEXT NOT NULL, S1 TEXT NOT NULL, S2 TEXT NOT NULL, S3 TEXT NOT NULL, S4 TEXT NOT NULL, S5 TEXT NOT NULL, S6 TEXT NOT NULL, S7 TEXT NOT NULL, S8 TEXT NOT NULL, S9 TEXT NOT NULL, S10 TEXT NOT NULL, S11 TEXT NOT NULL, S12 TEXT NOT NULL, S13 TEXT NOT NULL, S14 TEXT NOT NULL, S15 TEXT NOT NULL);"
+    create_users = "CREATE TABLE IF NOT EXISTS Final (Code TEXT NOT NULL, Interface TEXT NOT NULL, InterfaceOrder TEXT NOT NULL, CompletionThreeQuizzes TEXT NOT NULL, CompletionAll TEXT NOT NULL, Q1Time TEXT NOT NULL, Q1Progress TEXT NOT NULL, Q2Time TEXT NOT NULL, Q2Progress TEXT NOT NULL, Q3Time TEXT NOT NULL, Q3Progress TEXT NOT NULL, S1 TEXT NOT NULL, S2 TEXT NOT NULL, S3 TEXT NOT NULL, S4 TEXT NOT NULL, S5 TEXT NOT NULL, S6 TEXT NOT NULL, S7 TEXT NOT NULL, S8 TEXT NOT NULL, S9 TEXT NOT NULL, S10 TEXT NOT NULL, S11 TEXT NOT NULL, S12 TEXT NOT NULL, S13 TEXT NOT NULL, S14 TEXT NOT NULL, S15 TEXT NOT NULL), S16 TEXT NOT NULL);"
     
     cur.execute(create_users)
 
@@ -40,18 +40,18 @@ def insert_first_pop_question_to_users(value):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO Participants (Code, Interface, InterfaceOrder, CompletionThreeQuizzes, CompletionAll, Q1Time, Q1Progress, Q2Progress, Q3Time, Q3Progress, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], value[1], value[2], '', '', value[3], value[4], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
+    cur.execute("INSERT INTO Final (Code, Interface, InterfaceOrder, CompletionThreeQuizzes, CompletionAll, Q1Time, Q1Progress, Q2Time, Q2Progress, Q3Time, Q3Progress, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], value[1], value[2], '', '', value[3], value[4], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
 
     conn.commit()
     conn.close()
 
 
-def update_second_pop_question_to_users(value, code):
+def update_second_pop_question_to_users(time, progress, code):
 
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute('''UPDATE Participants SET Q2Progress = %s WHERE code = %s''', (value, code))
+    cur.execute('''UPDATE Final SET (Q2Time, Q2Progress) = (%s, %s)  WHERE code = %s''', (time, progress, code))
 
     conn.commit()
     conn.close()
@@ -62,7 +62,7 @@ def update_third_pop_question_to_users(time, progress, completion, code):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute('''UPDATE Participants SET (Q3Time, Q3Progress, CompletionThreeQuizzes) = (%s, %s, %s) WHERE code = %s''', (time, progress, completion, code))
+    cur.execute('''UPDATE Final SET (Q3Time, Q3Progress, CompletionThreeQuizzes) = (%s, %s, %s) WHERE code = %s''', (time, progress, completion, code))
 
 
     conn.commit()
@@ -73,7 +73,7 @@ def update_final_question_to_users(completion, value, code):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute('''UPDATE Participants SET (CompletionAll, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15) = (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) WHERE code = %s''', (completion, value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14], code))
+    cur.execute('''UPDATE Final SET (CompletionAll, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16) = (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) WHERE code = %s''', (completion, value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14], value[15], code))
  
     conn.commit()
     conn.close()
@@ -81,13 +81,15 @@ def update_final_question_to_users(completion, value, code):
 @app.route('/')
 @cross_origin(supports_credentials=True)
 def index():
-    letterList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q']
+    # letterList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q']
+    
     scenarioList = ['first', 'second', 'third']
     # firstSession = ['11', '12']
     # secondSession = ['21', '22']
     # thirdSession = ['31', '32']
 
-    letter = random.choice(letterList)
+    # letter = random.choice(letterList)
+    letter = 'F'
     random.shuffle(scenarioList)
     number = str(uuid.uuid4())
     # first = letter + random.choice(firstSession)
@@ -168,7 +170,8 @@ def q12():
 @cross_origin(supports_credentials=True)
 def secondScenario():
     if request.method == 'POST':
-        time = request.form['time1'] + ':' + request.form['time2']
+        # time = request.form['time1'] + ':' + request.form['time2'] remove semicolon
+        time = request.form['time1'] + request.form['time2']
         progress = request.form['progress']
         
         session['q1Time'] = time
@@ -218,8 +221,11 @@ def q22():
 @cross_origin(supports_credentials=True)
 def thirdScenario():
     if request.method == 'POST':
-        value = request.form['progress']
 
+        time = request.form['time1'] + request.form['time2']
+        progress = request.form['progress']
+        
+        session['q1Time'] = time
         session['q2Progress'] = value
         session.permanent = True
 
@@ -227,7 +233,7 @@ def thirdScenario():
         code = session.get('code', None)
         
 
-        update_second_pop_question_to_users(value, code)
+        update_second_pop_question_to_users(time, progress, code)
         scenarioPage = order +'Scenario.html'
 
         return render_template(scenarioPage, next='thirdGame')
@@ -291,7 +297,7 @@ def final():
     # insertValue.append(session.get('q3Progress', None))
     
     if request.method == 'POST':
-        for i in range(1,16):
+        for i in range(1,17):
             name = 's' + str(i)
             insertValue.append(request.form[name])
             
