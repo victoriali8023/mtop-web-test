@@ -170,7 +170,7 @@ def q12():
 def secondScenario():
     if request.method == 'POST':
         # time = request.form['time1'] + ':' + request.form['time2'] remove semicolon
-        time = request.form['time1'] + request.form['time2']
+        time = request.form['time1'] + ':' + request.form['time2']
         progress = request.form['progress']
         
         session['q1Time'] = time
@@ -221,7 +221,7 @@ def q22():
 def thirdScenario():
     if request.method == 'POST':
 
-        time = request.form['time1'] + request.form['time2']
+        time = request.form['time1'] + ':' + request.form['time2']
         progress = request.form['progress']
         
         session['q1Time'] = time
