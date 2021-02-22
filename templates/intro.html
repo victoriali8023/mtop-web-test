@@ -47,7 +47,7 @@
         <!-- <video width="400" height='400' controls>
           <source src='static/videos/AVideo.mp4' type="video/mp4">
         </video> -->
-        <video controls id='video' width="640" height="480" src='static/videos/AVideo.mp4'></video>
+        <video controls id='video' width="640" height="480" src=''></video>
 
         <!-- <iframe id='video' src="" width="640" height="480"></iframe> -->
     
@@ -55,25 +55,72 @@
     <a id="link" href="practice">Start</a>
 </body>  
 <script>
-    var letter = '{{letter}}'
+    var letter = '{{letter}}';
+    var not_watched_25 = true;
+    var not_watched_50 = true;
+    var not_watched_75 = true;
 
-    var dict = {'A': "https://drive.google.com/file/d/1VnL_DuSvYe_DO1qAjKpMnZj1txNchdye/preview",
-                'B': "https://drive.google.com/file/d/1A2fpotkp5ujxhJbk-Ur0a7t52ZXHojmT/preview",
-                'C': "https://drive.google.com/file/d/10wfOUZCUflIR85y9ZlffPH0fX0_eF8FX/preview",
-                'D': "https://drive.google.com/file/d/1z8ue4KFiz-tn2aSGIT2HGV6QNn39DWho/preview",
-                'E': "https://drive.google.com/file/d/1DY0JcsupamYScVQyeEqw5WgXEn4FGr_a/preview",
-                'F': "https://drive.google.com/file/d/1zikJN2t8azTYIcW6WmOgNhvrcfzgEj0M/preview",
-                'G': "https://drive.google.com/file/d/1XKJ-mooQnBRbp2h595xU6-lo8RoSAorh/preview",
-                'H': "https://drive.google.com/file/d/1s2mvEkO-zYW3KpWTDUhyKfK4YRz6Mlu7/preview",
-                'I':"https://drive.google.com/file/d/1uONH7-WbHUm28fbomwk-zZits-9GLSDM/preview",
-                'J':"https://drive.google.com/file/d/1mSqNsNcKrujHuIWglCicCME3ydnYTAPB/preview",
-                'K':"https://drive.google.com/file/d/1eldf90ryN0WeCEMCBD8qwBD6dXMfJ1gV/preview",
-                'M':"https://drive.google.com/file/d/1VYEsURSb9EHc7MI8xDdC65o2dLwXr1l5/preview",
-                'N':"https://drive.google.com/file/d/17vVUD4lacYF3j9UAuKcR197UPQPCGD1-/preview",
-                'O':"https://drive.google.com/file/d/1KVnTtqhzBuk7lBzMrfQgnRl31jY1ri_X/preview",
-                'P':"https://drive.google.com/file/d/10zJngGuGenGpqB4R3NXgjWMc0Dtv9puu/preview",
-                'Q':"https://drive.google.com/file/d/1dx62VGkv8kuwLTbUDdkKiYXOPkMQyqal/preview"}
-    // document.getElementById('video').src = dict[letter]
+    var dict = {'A': "static/videos/AVideo.mp4",
+                'B': "static/videos/BVideo.mp4",
+                'C': "static/videos/CVideo.mp4",
+                'D': "static/videos/DVideo.mp4",
+                'E': "static/videos/EVideo.mp4",
+                'F': "static/videos/FVideo.mp4",
+                'G': "static/videos/GVideo.mp4",
+                'H': "static/videos/HVideo.mp4",
+                'I':"static/videos/IVideo.mp4",
+                'J':"static/videos/JVideo.mp4",
+                'K':"static/videos/KVideo.mp4",
+                'M':"static/videos/MVideo.mp4",
+                'N':"static/videos/NVideo.mp4",
+                'O':"static/videos/OVideo.mp4",
+                'P':"static/videos/PVideo.mp4",
+                'Q':"static/videos/QVideo.mp4"};
+
+    document.getElementById('video').src = dict[letter];
+
+    //Track 25%, 50%, and 75% of video watched
+    jQuery("#video").on("timeupdate", function() {
+      var currentTime = jQuery("#video").prop("currentTime");
+      var duration = jQuery("#video").prop("duration");
+      //double percentages will occur because of calculations. ie. 25.1 % watched and 25.2%watched. 
+      //when fixed to decimal places 25 occurs and then 25 occurs again. 
+      //boolean value used to call pixel only once.
+      var percentage_watched = (currentTime / duration) * 100;
+
+      if ((percentage_watched.toFixed() == 25) && (not_watched_25 == true)) {
+        console.log("watched 25%")
+        //utag.link({'event_type' : 'video', 'event_action': '25% watched', 'video_milestone': '25%'});
+        not_watched_25 = false;
+      } else if ((percentage_watched.toFixed() == 50) && (not_watched_50 == true)) {
+        console.log("watched 50%")
+        //utag.link({'event_type' : 'video', 'event_action': '50% watched', 'video_milestone': '50%'});
+        not_watched_50 = false;
+      } else if ((percentage_watched.toFixed() == 75) && (not_watched_75 == true)) {
+        console.log("watched 75%")
+        //utag.link({'event_type' : 'video', 'event_action': '75% watched', 'video_milestone': '75%'});
+        not_watched_75 = false;
+      }
+    })
+
+
+    // var dict = {'A': "https://drive.google.com/file/d/1VnL_DuSvYe_DO1qAjKpMnZj1txNchdye/preview",
+    //             'B': "https://drive.google.com/file/d/1A2fpotkp5ujxhJbk-Ur0a7t52ZXHojmT/preview",
+    //             'C': "https://drive.google.com/file/d/10wfOUZCUflIR85y9ZlffPH0fX0_eF8FX/preview",
+    //             'D': "https://drive.google.com/file/d/1z8ue4KFiz-tn2aSGIT2HGV6QNn39DWho/preview",
+    //             'E': "https://drive.google.com/file/d/1DY0JcsupamYScVQyeEqw5WgXEn4FGr_a/preview",
+    //             'F': "https://drive.google.com/file/d/1zikJN2t8azTYIcW6WmOgNhvrcfzgEj0M/preview",
+    //             'G': "https://drive.google.com/file/d/1XKJ-mooQnBRbp2h595xU6-lo8RoSAorh/preview",
+    //             'H': "https://drive.google.com/file/d/1s2mvEkO-zYW3KpWTDUhyKfK4YRz6Mlu7/preview",
+    //             'I':"https://drive.google.com/file/d/1uONH7-WbHUm28fbomwk-zZits-9GLSDM/preview",
+    //             'J':"https://drive.google.com/file/d/1mSqNsNcKrujHuIWglCicCME3ydnYTAPB/preview",
+    //             'K':"https://drive.google.com/file/d/1eldf90ryN0WeCEMCBD8qwBD6dXMfJ1gV/preview",
+    //             'M':"https://drive.google.com/file/d/1VYEsURSb9EHc7MI8xDdC65o2dLwXr1l5/preview",
+    //             'N':"https://drive.google.com/file/d/17vVUD4lacYF3j9UAuKcR197UPQPCGD1-/preview",
+    //             'O':"https://drive.google.com/file/d/1KVnTtqhzBuk7lBzMrfQgnRl31jY1ri_X/preview",
+    //             'P':"https://drive.google.com/file/d/10zJngGuGenGpqB4R3NXgjWMc0Dtv9puu/preview",
+    //             'Q':"https://drive.google.com/file/d/1dx62VGkv8kuwLTbUDdkKiYXOPkMQyqal/preview"}
+    
 
   </script>
 </html>
