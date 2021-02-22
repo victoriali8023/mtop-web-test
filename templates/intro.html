@@ -13,6 +13,7 @@
       display: inline-block;
     }
   </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <title>Intro</title>
 
@@ -80,9 +81,9 @@
     document.getElementById('video').src = dict[letter];
 
     //Track 25%, 50%, and 75% of video watched
-    jQuery("#video").on("timeupdate", function() {
-      var currentTime = jQuery("#video").prop("currentTime");
-      var duration = jQuery("#video").prop("duration");
+    $("#video").on("timeupdate", function() {
+      var currentTime = $("#video").prop("currentTime");
+      var duration = $("#video").prop("duration");
       //double percentages will occur because of calculations. ie. 25.1 % watched and 25.2%watched. 
       //when fixed to decimal places 25 occurs and then 25 occurs again. 
       //boolean value used to call pixel only once.
