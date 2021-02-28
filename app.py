@@ -81,20 +81,21 @@ def update_final_question_to_users(completion, value, code):
 @app.route('/')
 @cross_origin(supports_credentials=True)
 def index():
-    letterList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q']
+    # letterList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q']
+    
     
     scenarioList = ['first', 'second', 'third']
     # firstSession = ['11', '12']
     # secondSession = ['21', '22']
     # thirdSession = ['31', '32']
 
-    letter = random.choice(letterList)
+    # letter = random.choice(letterList)
+    letter = 'E'
     random.shuffle(scenarioList)
     number = str(uuid.uuid4())
     # first = letter + random.choice(firstSession)
     # second = letter + random.choice(secondSession)
     # third = letter + random.choice(thirdSession)
-    # number = str(uuid.uuid4())
 
     # userId = letter + '-' + first + '-' + second + '-' + third + '-' + number
     session['letter'] = letter
