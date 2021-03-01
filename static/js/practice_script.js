@@ -15,7 +15,7 @@ $(document).keypress(function(e) {
     if (name.length > 15) {
         $(".watch-container").removeClass("show");
       }
-  },1000);
+  },5000);
   window.setTimeout(function(){
     window.location.href = 'firstScenario';
   }, 10000);
