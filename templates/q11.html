@@ -2,34 +2,49 @@
 <html>
 <head>
     <meta charset="utf8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <style>
-        #submit {
-          background-color: #327DA9;
-          border: 1px solid #327DA9;
-          color: white;
-          padding: 14px 25px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
+        body {
+            padding-left: 20%;
+            padding-right: 20%;
         }
+
+        .display-6 {
+            text-align: center;
+            padding-bottom: 2%;
+        }
+        .input-group {
+            width: 10%;
+            padding-bottom: 3%;
+        }
+
+        .breakpoint {
+            padding-right: 5%;
+            padding-left: 5%;
+        }
+
     </style>   
     <title>Question</title>
 </head>
 <body>
-
-    <form action="/secondScenario" method="POST">
-        <div class='form-group'>
-            <h3>What was the time when you checked it last?</h3>
-            <input type="number" id="time1" name="time1" requiredminlength="1" maxlength="1" size="1" required> : <input type="number" id="name2" name="time2" requiredminlength="2" maxlength="2" size="2" required>
-            
-        
-        
-            <h3>What was the progress when you checked it last? (write it in number. e.g. 28)</h3>
-            
-            <input type="number" id="progress" name="progress" requiredminlength="2" maxlength="8" size="6" required>
-        
+    <h6 class="display-6">Quiz</h6>
+    <form action="/secondScenario" class="form-inline" method="POST">
+        <h6>What was the time when you checked it last?</h6>
+        <div class="input-group">
+            <input type="number" id="time1" name="time1" aria-label="First name" class="form-control" required>
+            <p class='breakpoint'> : </p>
+            <input type="number" id="name2" name="time2" aria-label="Last name" class="form-control" required>
         </div>
-        <input id='submit' type="submit" value="Submit Form"/>
+
+
+        <h6>What was the progress when you checked it last? (write it in number. e.g. 28%)</h6>
+        <div class='input-group'>
+            <input type="number" id="progress" name="progress" requiredminlength="2" maxlength="8" size="6" class="form-control" required>
+        </div>
+        
+        <input id='submit' class="btn btn-primary" type="submit" value="Submit Quiz"/>
+       
+        
     </form>
     
 

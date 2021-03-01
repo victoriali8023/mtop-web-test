@@ -2,33 +2,25 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <style>
-    #agreeBtn {
-      background-color: #327DA9;
-      border: 1px solid #327DA9;
-      color: white;
-      padding: 14px 25px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
+    body {
+      padding-left: 20%;
+      padding-right: 20%;
     }
-    #disBtn {
-      border: 1px solid #327DA9;
-      color: black;
-      padding: 14px 25px;
+    .display-5 {
       text-align: center;
-      text-decoration: none;
-      display: inline-block;
+      padding-bottom: 5%;
     }
     .selection {
       margin: auto;
+      padding-bottom: 5%;
     }
   </style>
   <title>Consent Form</title>
 </head>
 <body>
-    <h1>Consent Form</h1>
-  
+    <h5 class="display-5">Consent Form</h5>
     <h3>Study title: Glanceable Feedback Performance on Smartwatch</h3>
 
     <p><Strong>Researchers: </Strong> Mark Newman, Pedja Klasnja, Yuxuan Li <br>
@@ -90,8 +82,8 @@
     
     <p>If you meet these criteria and would like to take the test, click the button below to start.</p>
     <div class='selection'>
-      <a id='disBtn' href="disagree" fontsize='20pt'>Disagree</a>
-      <a id='agreeBtn' href="intro">Agree</a>
+      <a id='disBtn' class="btn btn-outline-primary" href="disagree" fontsize='20pt'>Disagree</a>
+      <a id='agreeBtn' class="btn btn-primary" href="intro">Agree</a>
     </div>
     
 </body>

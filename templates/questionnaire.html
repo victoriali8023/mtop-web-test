@@ -2,155 +2,430 @@
 <html>
 <head>
     <meta charset="utf8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <style>
-        #submit {
-          background-color: #327DA9;
-          border: 1px solid #327DA9;
-          color: white;
-          padding: 14px 25px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
+        body {
+            padding-left: 20%;
+            padding-right: 20%;
+        }
+
+        .display-6 {
+            text-align: center;
+            padding-bottom: 2%;
+        }
+
+        .section {
+          padding-bottom: 2%;
+        }
+
+        li {
+          font-weight: 600;
+        }
+
+        .btn {
+          padding-bottom: 10%;
         }
       </style>
     <title>Post-Questionaire</title>
 </head>
 <body>
-    <h1>Post Questionnaire</h1>
+    <h6 class="display-6">Post Questionnaire</h6>
 
     <form action="/final" method="POST">
         <div class='form-group'>
-                <h3>I could easily notice the progress display. </h3>
-                Strongly disagree<input type='radio' name='s1' value='1'>1
-                <input type='radio' name='s1' value='2'>2
-                <input type='radio' name='s1' value='3'>3
-                <input type='radio' name='s1' value='4'>4
-                <input type='radio' name='s1' value='5'>5
-                Strongly agree
-        
-                <h3>I could notice the change of the progress display during the course of the study sessions. </h3>
-                Strongly disagree<input type='radio' name='s2' value='1'>1
-                <input type='radio' name='s2' value='2'>2
-                <input type='radio' name='s2' value='3'>3
-                <input type='radio' name='s2' value='4'>4
-                <input type='radio' name='s2' value='5'>5
-                Strongly agree
 
-                <h3>I feel confident in being able to understand the information in the progress display.</h3>
-                Strongly disagree<input type='radio' name='s3' value='1'>1
-                <input type='radio' name='s3' value='2'>2
-                <input type='radio' name='s3' value='3'>3
-                <input type='radio' name='s3' value='4'>4
-                <input type='radio' name='s3' value='5'>5
-                Strongly agree
-            
-                <h3>I feel confident in being able to understand the information just by glancing at it.</h3>
-                Strongly disagree<input type='radio' name='s4' value='1'>1
-                <input type='radio' name='s4' value='2'>2
-                <input type='radio' name='s4' value='3'>3
-                <input type='radio' name='s4' value='4'>4
-                <input type='radio' name='s4' value='5'>5
-                Strongly agree
+          <ol>
+          <div class='section'>
+          <li>I could easily notice the progress display.</li>
+          <span>Strongly Disagree</span>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio1" name='s1' value='1'>
+            <label class="form-check-label" for="inlineRadio1">1</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio2" name='s1' value='2'>
+            <label class="form-check-label" for="inlineRadio2">2</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio3" name='s1' value='3'>
+            <label class="form-check-label" for="inlineRadio3">3</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio4" name='s1' value='4'>
+            <label class="form-check-label" for="inlineRadio4">4</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio5" name='s1' value='5'>
+            <label class="form-check-label" for="inlineRadio5">5</label><span>  Strongly Agree</span>
+          </div>
+          </div>
 
-                <h3>The display provides me with the information I needed.</h3>
-                Strongly disagree<input type='radio' name='s5' value='1'>1
-                <input type='radio' name='s5' value='2'>2
-                <input type='radio' name='s5' value='3'>3
-                <input type='radio' name='s5' value='4'>4
-                <input type='radio' name='s5' value='5'>5
-                Strongly agree
+          <div class='section'>
+          <li>I could notice the change of the progress display during the course of the study sessions.</li>
+          <span>Strongly Disagree</span>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio1" name='s2' value='1'>
+            <label class="form-check-label" for="inlineRadio1">1</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio2" name='s2' value='2'>
+            <label class="form-check-label" for="inlineRadio2">2</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio3" name='s2' value='3'>
+            <label class="form-check-label" for="inlineRadio3">3</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio4" name='s2' value='4'>
+            <label class="form-check-label" for="inlineRadio4">4</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio5" name='s2' value='5'>
+            <label class="form-check-label" for="inlineRadio5">5</label><span>  Strongly Agree</span>
+          </div>
+          </div>
 
-                <h3>The display provides me with too much distracting information.</h3>
-                Strongly disagree<input type='radio' name='s6' value='1'>1
-                <input type='radio' name='s6' value='2'>2
-                <input type='radio' name='s6' value='3'>3
-                <input type='radio' name='s6' value='4'>4
-                <input type='radio' name='s6' value='5'>5
-                Strongly agree
+          <div class='section'>
+          <li>I feel confident in being able to understand the information in the progress display.</li>
+          <span>Strongly Disagree</span>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio1" name='s3' value='1'>
+            <label class="form-check-label" for="inlineRadio1">1</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio2" name='s3' value='2'>
+            <label class="form-check-label" for="inlineRadio2">2</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio3" name='s3' value='3'>
+            <label class="form-check-label" for="inlineRadio3">3</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio4" name='s3' value='4'>
+            <label class="form-check-label" for="inlineRadio4">4</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineRadio5" name='s3' value='5'>
+            <label class="form-check-label" for="inlineRadio5">5</label><span>  Strongly Agree</span>
+          </div>
+          </div>
 
-                <h3>I found the watch display unnecessarily complex.</h3>
-                Strongly disagree<input type='radio' name='s7' value='1'>1
-                <input type='radio' name='s7' value='2'>2
-                <input type='radio' name='s7' value='3'>3
-                <input type='radio' name='s7' value='4'>4
-                <input type='radio' name='s7' value='5'>5
-                Strongly agree
+          <div class='section'>
+            <li>I feel confident in being able to understand the information just by glancing at it.</li>
+            <span>Strongly Disagree</span>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio1" name='s4' value='1'>
+              <label class="form-check-label" for="inlineRadio1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio2" name='s4' value='2'>
+              <label class="form-check-label" for="inlineRadio2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio3" name='s4' value='3'>
+              <label class="form-check-label" for="inlineRadio3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio4" name='s4' value='4'>
+              <label class="form-check-label" for="inlineRadio4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio5" name='s4' value='5'>
+              <label class="form-check-label" for="inlineRadio5">5</label><span>  Strongly Agree</span>
+            </div>
+          </div>
 
-                <h3>I was able to adequately focus on checking the time and the progress display without being distracted by the game.</h3>
-                Strongly disagree<input type='radio' name='s8' value='1'>1
-                <input type='radio' name='s8' value='2'>2
-                <input type='radio' name='s8' value='3'>3
-                <input type='radio' name='s8' value='4'>4
-                <input type='radio' name='s8' value='5'>5
-                Strongly agree
+          <div class='section'>
+            <li>The display provides me with the information I needed.</li>
+            <span>Strongly Disagree</span>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio1" name='s5' value='1'>
+              <label class="form-check-label" for="inlineRadio1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio2" name='s5' value='2'>
+              <label class="form-check-label" for="inlineRadio2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio3" name='s5' value='3'>
+              <label class="form-check-label" for="inlineRadio3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio4" name='s5' value='4'>
+              <label class="form-check-label" for="inlineRadio4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio5" name='s5' value='5'>
+              <label class="form-check-label" for="inlineRadio5">5</label><span>  Strongly Agree</span>
+            </div>
+          </div>
 
-                <h3>I was able to shift my attention between playing the game and checking the progress display easily.</h3>
-                Strongly disagree<input type='radio' name='s9' value='1'>1
-                <input type='radio' name='s9' value='2'>2
-                <input type='radio' name='s9' value='3'>3
-                <input type='radio' name='s9' value='4'>4
-                <input type='radio' name='s9' value='5'>5
-                Strongly agree
+          <div class='section'>
+            <li>The display provides me with too much distracting information.</li>
+            <span>Strongly Disagree</span>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio1" name='s6' value='1'>
+              <label class="form-check-label" for="inlineRadio1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio2" name='s6' value='2'>
+              <label class="form-check-label" for="inlineRadio2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio3" name='s6' value='3'>
+              <label class="form-check-label" for="inlineRadio3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio4" name='s6' value='4'>
+              <label class="form-check-label" for="inlineRadio4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio5" name='s6' value='5'>
+              <label class="form-check-label" for="inlineRadio5">5</label><span>  Strongly Agree</span>
+            </div>
+          </div>
 
-                <h3>Please skip this question and move to the next one. This is just to screen out random clicking</h3>
-                Strongly disagree<input type='radio' name='s10' value='1' checked="checked">1
-                <input type='radio' name='s10' value='2'>2
-                <input type='radio' name='s10' value='3'>3
-                <input type='radio' name='s10' value='4'>4
-                <input type='radio' name='s10' value='5'>5
-                Strongly agree
+          <div class='section'>
+            <li>I found the watch display unnecessarily complex.</li>
+            <span>Strongly Disagree</span>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio1" name='s7' value='1'>
+              <label class="form-check-label" for="inlineRadio1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio2" name='s7' value='2'>
+              <label class="form-check-label" for="inlineRadio2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio3" name='s7' value='3'>
+              <label class="form-check-label" for="inlineRadio3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio4" name='s7' value='4'>
+              <label class="form-check-label" for="inlineRadio4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio5" name='s7' value='5'>
+              <label class="form-check-label" for="inlineRadio5">5</label><span>  Strongly Agree</span>
+            </div>
+          </div>
 
-                <h3>I like the display.</h3>
-                Strongly disagree<input type='radio' name='s11' value='1'>1
-                <input type='radio' name='s11' value='2'>2
-                <input type='radio' name='s11' value='3'>3
-                <input type='radio' name='s11' value='4'>4
-                <input type='radio' name='s11' value='5'>5
-                Strongly agree
+          <div class='section'>
+            <li>I was able to adequately focus on checking the time and the progress display without being distracted by the game.</li>
+            <span>Strongly Disagree</span>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio1" name='s8' value='1'>
+              <label class="form-check-label" for="inlineRadio1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio2" name='s8' value='2'>
+              <label class="form-check-label" for="inlineRadio2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio3" name='s8' value='3'>
+              <label class="form-check-label" for="inlineRadio3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio4" name='s8' value='4'>
+              <label class="form-check-label" for="inlineRadio4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio5" name='s8' value='5'>
+              <label class="form-check-label" for="inlineRadio5">5</label><span>  Strongly Agree</span>
+            </div>
+          </div>
 
-                <h3>I enjoy using the display.</h3>
-                Strongly disagree<input type='radio' name='s12' value='1'>1
-                <input type='radio' name='s12' value='2'>2
-                <input type='radio' name='s12' value='3'>3
-                <input type='radio' name='s12' value='4'>4
-                <input type='radio' name='s12' value='5'>5
-                Strongly agree
+          <div class='section'>
+            <li>I was able to shift my attention between playing the game and checking the progress display easily.</li>
+            <span>Strongly Disagree</span>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio1" name='s9' value='1'>
+              <label class="form-check-label" for="inlineRadio1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio2" name='s9' value='2'>
+              <label class="form-check-label" for="inlineRadio2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio3" name='s9' value='3'>
+              <label class="form-check-label" for="inlineRadio3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio4" name='s9' value='4'>
+              <label class="form-check-label" for="inlineRadio4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio5" name='s9' value='5'>
+              <label class="form-check-label" for="inlineRadio5">5</label><span>  Strongly Agree</span>
+            </div>
+          </div>
 
-                <h3>I think the display is useful.</h3>
-                Strongly disagree<input type='radio' name='s13' value='1'>1
-                <input type='radio' name='s13' value='2'>2
-                <input type='radio' name='s13' value='3'>3
-                <input type='radio' name='s13' value='4'>4
-                <input type='radio' name='s13' value='5'>5
-                Strongly agree
+          <div class='section'>
+            <Li>Please skip this question and move to the next one. This is just to screen out random clicking</Li>
+            <span>Strongly Disagree</span>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio1" name='s10' value='1' checked>
+              <label class="form-check-label" for="inlineRadio1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio2" name='s10' value='2'>
+              <label class="form-check-label" for="inlineRadio2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio3" name='s10' value='3'>
+              <label class="form-check-label" for="inlineRadio3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio4" name='s10' value='4'>
+              <label class="form-check-label" for="inlineRadio4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio5" name='s10' value='5'>
+              <label class="form-check-label" for="inlineRadio5">5</label><span>  Strongly Agree</span>
+            </div>
+          </div>
 
-                <h3>What gender do you identify as</h3>
-                <ul>
-                <input type='radio' name='s14' value='Male'>Male
-                <input type='radio' name='s14' value='Female'>Female
-                <input type='radio' name='s14' value='Prefer not to say'>Prefer not to say
-                </ul>
+          <div class='section'>
+            <li>I like the display.</li>
+            <span>Strongly Disagree</span>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio1" name='s11' value='1'>
+              <label class="form-check-label" for="inlineRadio1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio2" name='s11' value='2'>
+              <label class="form-check-label" for="inlineRadio2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio3" name='s11' value='3'>
+              <label class="form-check-label" for="inlineRadio3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio4" name='s11' value='4'>
+              <label class="form-check-label" for="inlineRadio4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio5" name='s11' value='5'>
+              <label class="form-check-label" for="inlineRadio5">5</label><span>  Strongly Agree</span>
+            </div>
+          </div>
 
-                <h3>What is your age range?</h3>
-                <ul>
-                <input type='radio' name='s15' value='18 – 24'>18–24
-                <input type='radio' name='s15' value='25 – 34'>25–34
-                <input type='radio' name='s15' value='35 – 44'>35–44
-                <input type='radio' name='s15' value='45 – 54'>45–54
-                <input type='radio' name='s15' value='44 – 64'>44–64
-                <input type='radio' name='s15' value='Above 65'>Above 65
-                </ul>
+          <div class='section'>
+            <li>I enjoy using the display.</li>
+            <span>Strongly Disagree</span>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio1" name='s12' value='1'>
+              <label class="form-check-label" for="inlineRadio1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio2" name='s12' value='2'>
+              <label class="form-check-label" for="inlineRadio2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio3" name='s12' value='3'>
+              <label class="form-check-label" for="inlineRadio3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio4" name='s12' value='4'>
+              <label class="form-check-label" for="inlineRadio4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio5" name='s12' value='5'>
+              <label class="form-check-label" for="inlineRadio5">5</label><span>  Strongly Agree</span>
+            </div>
+          </div>
 
-                <h3>Are you a smartwatch user?</h3>
-                <ul>
-                <input type='radio' name='s16' value='Yes, I used to be a smartwatch user'>Yes, I used to be a smartwatch user
-                <input type='radio' name='s16' value='Yes, I am currently a smartwatch user'>Yes, I am currently a smartwatch user
-                <input type='radio' name='s16' value='No, I have never used smartwatch before'>No, I have never used smartwatch before
-                </ul>
+          <div class='section'>
+            <li>I think the display is useful.</li>
+            <span>Strongly Disagree</span>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio1" name='s13' value='1'>
+              <label class="form-check-label" for="inlineRadio1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio2" name='s13' value='2'>
+              <label class="form-check-label" for="inlineRadio2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio3" name='s13' value='3'>
+              <label class="form-check-label" for="inlineRadio3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio4" name='s13' value='4'>
+              <label class="form-check-label" for="inlineRadio4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio5" name='s13' value='5'>
+              <label class="form-check-label" for="inlineRadio5">5</label><span>  Strongly Agree</span>
+            </div>
+          </div>
+
+          <div class='section'>
+            <li>What gender do you identify as</li>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio1" name='s14' value='Male'>
+              <label class="form-check-label" for="inlineRadio1">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio2" name='s14' value='Female'>
+              <label class="form-check-label" for="inlineRadio2">Female</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio3" name='s14' value='Prefer not to say'>
+              <label class="form-check-label" for="inlineRadio3">Prefer not to say</label>
+            </div>
+          </div>
+
+          <div class='section'>
+            <li>What is your age range?</li>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio1" name='s15' value='18–24'>
+              <label class="form-check-label" for="inlineRadio1">18–24</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio2" name='s15' value='25–34'>
+              <label class="form-check-label" for="inlineRadio2">25–34</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio3" name='s15' value='35–44'>
+              <label class="form-check-label" for="inlineRadio3">35–44</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio4" name='s15' value='45–54'>
+              <label class="form-check-label" for="inlineRadio4">45–54</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio5" name='s15' value='55–64'>
+              <label class="form-check-label" for="inlineRadio5">55–64</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio5" name='s15' value='Above 65'>
+              <label class="form-check-label" for="inlineRadio5">Above 65</label>
+            </div>
+          </div>
+
+          <div class='section'>
+            <li>Are you a smartwatch user?</li>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio1" name='s16' value='Yes, I used to be a smartwatch user'>
+              <label class="form-check-label" for="inlineRadio1">Yes, I used to be a smartwatch user</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio2" name='s16' value='Yes, I am currently a smartwatch user'>
+              <label class="form-check-label" for="inlineRadio2">Yes, I am currently a smartwatch user</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineRadio3" name='s16' value='No, I have never used smartwatch before'>
+              <label class="form-check-label" for="inlineRadio3">No, I have never used smartwatch before</label>
+            </div>
+          </div>
+          </ol>
 
         
         </div>
-        <input id='submit' type="submit" value="Submit Form"/>
+        <div class='btn'> 
+          <input id='submit' class="btn btn-primary" type="submit" value="Submit Form"/>
+        </div>
     </form>
 </body>
 </html>

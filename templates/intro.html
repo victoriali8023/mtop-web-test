@@ -2,22 +2,27 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <style>
-    a {
-      background-color: #327DA9;
-      border: 1px solid #327DA9;
-      color: white;
-      padding: 14px 25px;
+    body {
+      padding-left: 20%;
+      padding-right: 20%;
+    }
+    .display-5 {
       text-align: center;
-      text-decoration: none;
-      display: inline-block;
+      padding-bottom: 5%;
     }
 
     .emphasize {
             color: red;
-        }
+    }
     .illustration {
       width: 30%;
+    }
+
+    .btn {
+      padding-top: 5%;
+      padding-bottom: 10%;
     }
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -26,29 +31,36 @@
 
 </head>
 <body>
-    <h1>
+    <h5 class="display-5">
         Smartwatch Feedback Design Study
-    </h1>
+    </h5>
     <div class='container'>
-      <p>Thank you for doing our study!</p>
-      <p>Please read all instructions carefully.</p>
-      <ul>
-        <li>In this study, you will experience three scenarios.</li>
-        <li>In each scenario, you will be asked to play a session of an online Memory game and bring up the smartwatch interface, as described in the instructions at the start of the session.</li>
-        <li>Each session will be followed with a pop-up quiz.</li>
-        <li>After finishing all three sessions, you will need to complete a brief questionnaire.</li>
-        <li>When you complete the final questionnaire, you will be given a code (NOT your work ID!) which you will need to submit for this Amazon Mechanical Turk task to be approved.</li>
+      
+      <ul class="list-unstyled">
+        <li>Thank you for doing our study!</li>
+        <li>Please read all instructions carefully:</li>
+        <img class='illustration' src='static/images/illustrations/flow1.png'></img>
+        <ul>
+          <li>In this study, you will experience <strong>three scenarios.</strong></li>
+          <li>In each scenario, you will be asked to play a session of an online <strong>Memory game</strong> and bring up the smartwatch interface, as described in the instructions at the start of the session.</li>
+          <li>Each session will be followed with a <strong>pop-up quiz</strong>.</li>
+          <li>After finishing all three sessions, you will need to complete a brief <strong>questionnaire</strong>.</li>
+          <li>When you complete the final questionnaire, you will be given a code (NOT your work ID!) which you will need to submit for this Amazon Mechanical Turk task to be approved.</li>
+        </ul>
+        <li>Don't go back to the previous pages when you are not sure about something.</li>
+      <li>The whole task is intended to take about 10 minutes, but the taskit will remain open on MTurk for 20 minutes to account for short disruptions.</li>
       </ul>
-      <p>Don't go back to the previous pages when you are not sure about something.</p>
-      <p>The whole task is intended to take about 10 minutes, but the taskit will remain open on MTurk for 20 minutes to account for short disruptions.</p>
       
-
       
-        <h3>Task Background Information:</h3>
-        <p>Recently, you have formed a team and donated to a charity. 
-          Your team has a daily goal for raising money so you are concerned about the progress.</p>
-        <p>Luckily, you could check this progress on the smartwatch you have just bought. 
-          You use it to check time, check activity progress, etc.</p>
+        <h7><strong>Task Background Information:</strong></h7>
+        <ul class="list-inline">
+          <li class="list-inline-item">Recently, you have formed a team and donated to a charity. 
+            Your team has a daily goal for raising money so you are concerned about the progress.</li>
+          <li class="list-inline-item">Luckily, you could check this progress on the smartwatch you have just bought. 
+            You use it to check time, check activity progress, etc.</li>
+          <li class="list-inline-item">But they're displayed inline.</li>
+        </ul>
+       
 
 
         <p>This is the illsutration image of the smartwach interface that you <b class='emphasize'>MUST</b> read.</p>
@@ -59,9 +71,12 @@
         <img class='illustration' src='static/images/illustrations/K.png'>
 
         <!-- <iframe id='video' src="" width="640" height="480"></iframe> -->
-    
+        
     </div>
-    <a id="link" href="practice">Start</a>
+    <div class='btn'> 
+      <a id='link' class="btn btn-primary" href="practice">Start</a>
+    </div>
+    
 </body>  
 <script>
     var letter = '{{letter}}';

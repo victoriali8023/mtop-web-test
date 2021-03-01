@@ -1,47 +1,56 @@
 <html lang='en'>
 <head>
     <title>Scenario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <style>
-        a {
-          background-color: #327DA9;
-          border: 1px solid #327DA9;
-          color: white;
-          padding: 14px 25px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
+        body {
+            padding-left: 20%;
+            padding-right: 20%;
         }
 
-        .time {
+        .display-6 {
+            text-align: center;
+            padding-bottom: 2%;
+        }
+
+        .emphasize {
             color: red;
+        }
+
+        img {
+            width:30%;
         }
       </style>
 </head>
 <body>
 <div class='scenario'>
-    <h3>Scenario:</h3>
-    <p>It is currently <b class='time'>9:15am</b>. You have an important online meeting to attend at <b class='time'>9:30am</b> and you don’t want to be late. While you are waiting, you decide to play an online Memory Card game (a game in which you turn over ‘cards’ to find matching pairs of cards). 
+    <h6 class="display-6">Scenario</h6>
+    <p>It is currently <b class='emphasize'>9:15am</b>. You have an important online meeting to attend at <b class='emphasize'>9:30am</b> and you don’t want to be late. While you are waiting, you decide to play an online Memory Card game for fun (a game in which you turn over ‘cards’ to find matching pairs of cards). 
     </p>
-    <p><i>Note: Time in this scenario <b class='time'>does not flow</b> at exactly the same time as time in the real world (it might be a bit faster or a bit slower), so you can’t use real world clocks as a reliable guide for time in the scenario.</i></p>
+    <p><i>Note: <b class='emphasize'>DON'T use real world clocks</b>. Time in this scenario does not flow at exactly the same time as time in the real world (it might be a bit faster or a bit slower), so you can’t use real world clocks as a reliable guide for time in the scenario.</i></p>
     <p>After 1-2 (real-world) minutes spent finding as many matches as possible, you should check the time on your “smartwatch.” To do this, press the <b>Return key</b> on your keyboard, which will display a simulated smartwatch display on the left side of your browser screen (over the top of the game). Check the time to see how much time is left before your meeting begins.</p>
     <p>Sometime after you check the time on their watch, the game will end and you will be presented with some questions about the content of the interface you saw.</p>
 </div>
-
+<img src='static/images/illustrations/flow2.png'>
 
 <div class='task'>
-    <h3>Your tasks:</h3>
-    <ul>
-        <li>Play the game and find as many matches as you can</li>
+    
+    <ul class="list-unstyled">
+        <li><strong>Tasks:</strong></li>
+        <ul>
+            <li>Play the game and find as many matches as you can</li>
         <li>Bring up the watch interface to:</li>
             <ul>
-                <li><b class='time'>Check the time</b> to avoid missing the meeting</li>
-                <li><b class='time'>Check the progress</b> on how much money was raised</li>
+                <li><b class='emphasize'>Check the time</b> to avoid missing the meeting</li>
+                <li><b class='emphasize'>Check the activity progress</b> on how much money was raised</li>
             </ul>
         <li>Answer questions about the content of the interface including the time. The questions will automatically pop up and stop the game.</li>
+        </ul>
+        
        
     </ul>
 </div>
-<a id='link' href=''>Start the game</a>
+<a id='link' class="btn btn-primary" href=''>Start the game</a>
 </body>
 <script>
     var next = '{{next}}'
