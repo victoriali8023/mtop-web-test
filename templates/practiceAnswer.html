@@ -19,30 +19,43 @@
             width:30%;
         }
 
+        .watch-container {
+            flex: 0.1;
+            visibility: hidden;
+        }
+
+        .watch-container.show{
+            flex: 0.1;
+            visibility: visible;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="static/js/practice_script.js" async></script>
     <title>Practice</title>
 </head>
 <body>
 
     <h6 class="display-6">Practice</h6>
     <ol>
-        <form action="/practiceAnswer" class="form-inline" method="POST">
         <li>
             <h6>What are the progresses of these two Simpsons interface?</h6>
             <img src='static/images/pilot_study_photos/N/N4.png'><br>
             <p>input your answer here: 
-                <input type="number" id="test" name="test" aria-label="First name"required>
-            </p>
+                {{test1}}
+                <strong id='answer'>answer: xx</strong></p>
             <img src='static/images/pilot_study_photos/N/N4.png'><br>
-            <p>input your answer here: <input type="number" id="test" name="test" aria-label="First name"required></p>
-            <input id='submit' class="btn btn-primary" type="submit" value="Submit and check answer"/> 
+            <p>input your answer here: 
+                {{test2}}
+                <strong id='answer'>answer: xx</strong></p>
+            </p>
         </li>
-        </form>
         <li>
              <h6>Please press the <strong style="color:red;">return</strong> key on your keyboard to show up the practice interface</h6>
             <h6>This is how you will call out the interface in the formal test.</h6>
             <h6>The practice interface will disappear in 5 seconds, and jump to the next page automatically.</h6>
+            <div class='watch-container'>
+                <img id='interface' src='static/images/practice.png'>
+            </div>
         </li>
     </ol>
     

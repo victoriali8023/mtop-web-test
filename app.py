@@ -9,6 +9,7 @@ from random import randint
 import psycopg2
 import subprocess
 from flask_cors import CORS, cross_origin
+from datetime import datetime
 
 app = Flask(__name__)
 # app.config['SECRET_KEY'] = os.urandom(24)
@@ -28,7 +29,7 @@ def create_user_table():
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    create_users = "CREATE TABLE IF NOT EXISTS Final (Code TEXT NOT NULL, Interface TEXT NOT NULL, InterfaceOrder TEXT NOT NULL, CompletionThreeQuizzes TEXT NOT NULL, CompletionAll TEXT NOT NULL, Q1Time TEXT NOT NULL, Q1Progress TEXT NOT NULL, Q2Time TEXT NOT NULL, Q2Progress TEXT NOT NULL, Q3Time TEXT NOT NULL, Q3Progress TEXT NOT NULL, S1 TEXT NOT NULL, S2 TEXT NOT NULL, S3 TEXT NOT NULL, S4 TEXT NOT NULL, S5 TEXT NOT NULL, S6 TEXT NOT NULL, S7 TEXT NOT NULL, S8 TEXT NOT NULL, S9 TEXT NOT NULL, S10 TEXT NOT NULL, S11 TEXT NOT NULL, S12 TEXT NOT NULL, S13 TEXT NOT NULL, S14 TEXT NOT NULL, S15 TEXT NOT NULL, S16 TEXT NOT NULL);"
+    create_users = "CREATE TABLE IF NOT EXISTS Final (Code TEXT NOT NULL, Interface TEXT NOT NULL, InterfaceOrder TEXT NOT NULL, CompletionThreeQuizzes TEXT NOT NULL, CompletionAll TEXT NOT NULL, Q1Date TEXT NOT NULL, Q1Time TEXT NOT NULL, Q1Progress TEXT NOT NULL, Q2Date TEXT NOT NULL, Q2Time TEXT NOT NULL, Q2Progress TEXT NOT NULL, Q3Date TEXT NOT NULL, Q3Time TEXT NOT NULL, Q3Progress TEXT NOT NULL, FinalDate TEXT NOT NULL, S1 TEXT NOT NULL, S2 TEXT NOT NULL, S3 TEXT NOT NULL, S4 TEXT NOT NULL, S5 TEXT NOT NULL, S6 TEXT NOT NULL, S7 TEXT NOT NULL, S8 TEXT NOT NULL, S9 TEXT NOT NULL, S10 TEXT NOT NULL, S11 TEXT NOT NULL, S12 TEXT NOT NULL, S13 TEXT NOT NULL, S14 TEXT NOT NULL, S15 TEXT NOT NULL, S16 TEXT NOT NULL);"
     
     cur.execute(create_users)
 
@@ -40,40 +41,40 @@ def insert_first_pop_question_to_users(value):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO Final (Code, Interface, InterfaceOrder, CompletionThreeQuizzes, CompletionAll, Q1Time, Q1Progress, Q2Time, Q2Progress, Q3Time, Q3Progress, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], value[1], value[2], '', '', value[3], value[4], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
+    cur.execute("INSERT INTO Final (Code, Interface, InterfaceOrder, CompletionThreeQuizzes, CompletionAll, Q1Date, Q1Time, Q1Progress, Q2Date, Q2Time, Q2Progress, Q3Date, Q3Time, Q3Progress, FinalDate, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], value[1], value[2], '', '', value[3], value[4], value[5], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
 
     conn.commit()
     conn.close()
 
 
-def update_second_pop_question_to_users(time, progress, code):
+def update_second_pop_question_to_users(date, time, progress, code):
 
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute('''UPDATE Final SET (Q2Time, Q2Progress) = (%s, %s)  WHERE code = %s''', (time, progress, code))
+    cur.execute('''UPDATE Final SET (Q2Date, Q2Time, Q2Progress) = (%s, %s, %s)  WHERE code = %s''', (date, time, progress, code))
 
     conn.commit()
     conn.close()
 
 
-def update_third_pop_question_to_users(time, progress, completion, code):
+def update_third_pop_question_to_users(date, time, progress, completion, code):
 
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute('''UPDATE Final SET (Q3Time, Q3Progress, CompletionThreeQuizzes) = (%s, %s, %s) WHERE code = %s''', (time, progress, completion, code))
+    cur.execute('''UPDATE Final SET (Q3Date, Q3Time, Q3Progress, CompletionThreeQuizzes) = (%s, %s, %s, %s) WHERE code = %s''', (date, time, progress, completion, code))
 
 
     conn.commit()
     conn.close()
 
-def update_final_question_to_users(completion, value, code):
+def update_final_question_to_users(date, completion, value, code):
 
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute('''UPDATE Final SET (CompletionAll, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16) = (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) WHERE code = %s''', (completion, value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14], value[15], code))
+    cur.execute('''UPDATE Final SET (CompletionAll, FinalDate, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16) = (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) WHERE code = %s''', (completion, date, value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14], value[15], code))
  
     conn.commit()
     conn.close()
@@ -124,8 +125,20 @@ def disagree():
 
 @app.route('/practice')
 def practice():
-    
+ 
     return render_template('practicePage.html')
+
+@app.route('/practiceAnswer')
+def practiceAnswer():
+    if request.method == 'POST':
+        test1 = request.form['test1']
+        test2 = request.form['test2']
+        
+        session['test1'] = test1
+        session['test2'] = test2
+        session.permanent = True
+ 
+        return render_template('practiceAnswer.html', test1=test1, test2=test2)
 
 @app.route('/firstScenario')
 def firstScenario():
@@ -174,15 +187,18 @@ def secondScenario():
         time = request.form['time1'] + ':' + request.form['time2']
         progress = request.form['progress']
         
+        date = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
+
         session['q1Time'] = time
         session['q1Progress'] = progress
+        session['q1Date'] = date
         session.permanent = True
 
         order = session.get('second', None)
         code = session.get('code', None)
         letter = code[0]
         interfaceOrder = code[2:20]
-        value = [code, letter, interfaceOrder, time, progress]
+        value = [code, letter, interfaceOrder, date, time, progress]
         
         insert_first_pop_question_to_users(value)
         scenarioPage = order +'Scenario.html'
@@ -224,16 +240,18 @@ def thirdScenario():
 
         time = request.form['time1'] + ':' + request.form['time2']
         progress = request.form['progress']
+        date = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
         
         session['q1Time'] = time
         session['q2Progress'] = progress
+        session['q2Date'] = date
         session.permanent = True
 
         order = session.get('third', None)
         code = session.get('code', None)
         
 
-        update_second_pop_question_to_users(time, progress, code)
+        update_second_pop_question_to_users(date, time, progress, code)
         scenarioPage = order +'Scenario.html'
 
         return render_template(scenarioPage, next='thirdGame')
@@ -273,16 +291,18 @@ def questionnaire():
     if request.method == 'POST':
         time = request.form['time1'] + ':' + request.form['time2']
         progress = request.form['progress']
+        date = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
 
         session['q3Time'] = time
         session['q3Progress'] = progress
+        session['q3Date'] = date
         session.permanent = True
 
         
         code = session.get('code', None)
         completion = 'Yes'
 
-        update_third_pop_question_to_users(time, progress, completion, code)
+        update_third_pop_question_to_users(date, time, progress, completion, code)
         return render_template('questionnaire.html')
 
 
@@ -290,22 +310,17 @@ def questionnaire():
 @cross_origin(supports_credentials=True)
 def final():
     insertValue = []
-    # insertValue.append(session.get('q1Time', None))
-    # insertValue.append(session.get('q1Progress', None))
-    # insertValue.append(session.get('q2Progress', None))
-    # insertValue.append(session.get('q3Time', None))
-    # insertValue.append(session.get('q3Progress', None))
     
     if request.method == 'POST':
         for i in range(1,17):
             name = 's' + str(i)
             insertValue.append(request.form[name])
             
-        # create_user_table()
 
         code = session.get('code', None)
+        date = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
         completion = 'Yes'
-        update_final_question_to_users(completion, insertValue, code)
+        update_final_question_to_users(date, completion, insertValue, code)
 
         return render_template('final.html',code=code)
 
