@@ -128,7 +128,7 @@ def practice():
  
     return render_template('practicePage.html')
 
-@app.route('/practiceAnswer', methods=['POST'])
+@app.route('/practiceAnswer', methods=['GET', 'POST'])
 def practiceAnswer():
     if request.method == 'POST':
         test1 = request.form['test1']
