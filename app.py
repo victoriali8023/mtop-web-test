@@ -29,7 +29,7 @@ def create_user_table():
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    create_users = "CREATE TABLE IF NOT EXISTS Formal (Code TEXT NOT NULL, Interface TEXT NOT NULL, InterfaceOrder TEXT NOT NULL, CompletionThreeQuizzes TEXT NOT NULL, CompletionAll TEXT NOT NULL, Q1Date TEXT NOT NULL, Q1Time TEXT NOT NULL, Q1Progress TEXT NOT NULL, Q2Date TEXT NOT NULL, Q2Time TEXT NOT NULL, Q2Progress TEXT NOT NULL, Q3Date TEXT NOT NULL, Q3Time TEXT NOT NULL, Q3Progress TEXT NOT NULL, FinalDate TEXT NOT NULL, S1 TEXT NOT NULL, S2 TEXT NOT NULL, S3 TEXT NOT NULL, S4 TEXT NOT NULL, S5 TEXT NOT NULL, S6 TEXT NOT NULL, S7 TEXT NOT NULL, S8 TEXT NOT NULL, S9 TEXT NOT NULL, S10 TEXT NOT NULL, S11 TEXT NOT NULL, S12 TEXT NOT NULL, S13 TEXT NOT NULL, S14 TEXT NOT NULL, S15 TEXT NOT NULL, S16 TEXT NOT NULL);"
+    create_users = "CREATE TABLE IF NOT EXISTS Formal (Code TEXT NOT NULL, Interface TEXT NOT NULL, InterfaceOrder TEXT NOT NULL, CompletionThreeQuizzes TEXT NOT NULL, CompletionAll TEXT NOT NULL, Test1 TEXT NOT NULL, Test2 TEXT NOT NULL, Q1Date TEXT NOT NULL, Q1Time TEXT NOT NULL, Q1Progress TEXT NOT NULL, Q2Date TEXT NOT NULL, Q2Time TEXT NOT NULL, Q2Progress TEXT NOT NULL, Q3Date TEXT NOT NULL, Q3Time TEXT NOT NULL, Q3Progress TEXT NOT NULL, FinalDate TEXT NOT NULL, S1 TEXT NOT NULL, S2 TEXT NOT NULL, S3 TEXT NOT NULL, S4 TEXT NOT NULL, S5 TEXT NOT NULL, S6 TEXT NOT NULL, S7 TEXT NOT NULL, S8 TEXT NOT NULL, S9 TEXT NOT NULL, S10 TEXT NOT NULL, S11 TEXT NOT NULL, S12 TEXT NOT NULL, S13 TEXT NOT NULL, S14 TEXT NOT NULL, S15 TEXT NOT NULL, S16 TEXT NOT NULL);"
     
     cur.execute(create_users)
 
@@ -41,7 +41,7 @@ def insert_first_pop_question_to_users(value):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO Formal (Code, Interface, InterfaceOrder, CompletionThreeQuizzes, CompletionAll, Q1Date, Q1Time, Q1Progress, Q2Date, Q2Time, Q2Progress, Q3Date, Q3Time, Q3Progress, FinalDate, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], value[1], value[2], '', '', value[3], value[4], value[5], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
+    cur.execute("INSERT INTO Formal (Code, Interface, InterfaceOrder, CompletionThreeQuizzes, CompletionAll, Test1, Test2, Q1Date, Q1Time, Q1Progress, Q2Date, Q2Time, Q2Progress, Q3Date, Q3Time, Q3Progress, FinalDate, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], value[1], value[2], '', '', value[3], value[4], value[5], value[6], value[7], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
 
     conn.commit()
     conn.close()
@@ -194,11 +194,14 @@ def secondScenario():
         session['q1Date'] = date
         session.permanent = True
 
+        test1 = session.get('test1', None)
+        test2 = session.get('test2', None)
+
         order = session.get('second', None)
         code = session.get('code', None)
         letter = code[0]
         interfaceOrder = code[2:20]
-        value = [code, letter, interfaceOrder, date, time, progress]
+        value = [code, letter, interfaceOrder, test1, test2, date, time, progress]
         
         insert_first_pop_question_to_users(value)
         scenarioPage = order +'Scenario.html'
