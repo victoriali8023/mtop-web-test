@@ -91,7 +91,7 @@ def index():
     # thirdSession = ['31', '32']
 
     # letter = random.choice(letterList)
-    letter = 'H'
+    letter = 'D'
     random.shuffle(scenarioList)
     number = str(uuid.uuid4())
     # first = letter + random.choice(firstSession)
