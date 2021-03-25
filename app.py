@@ -82,7 +82,7 @@ def update_final_question_to_users(date, completion, value, code):
 @app.route('/')
 @cross_origin(supports_credentials=True)
 def index():
-    # letterList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q']
+    letterList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q']
     
     
     scenarioList = ['first', 'second', 'third']
@@ -90,8 +90,8 @@ def index():
     # secondSession = ['21', '22']
     # thirdSession = ['31', '32']
 
-    # letter = random.choice(letterList)
-    letter = 'D'
+    letter = random.choice(letterList)
+    
     random.shuffle(scenarioList)
     number = str(uuid.uuid4())
     # first = letter + random.choice(firstSession)
@@ -125,8 +125,9 @@ def disagree():
 
 @app.route('/practice')
 def practice():
+    letter = session.get('letter', None)
  
-    return render_template('practicePage.html')
+    return render_template('practicePage.html', letter=letter)
 
 @app.route('/practiceAnswer', methods=['GET', 'POST'])
 def practiceAnswer():
@@ -137,8 +138,10 @@ def practiceAnswer():
         session['test1'] = test1
         session['test2'] = test2
         session.permanent = True
+
+        letter = session.get('letter', None)
  
-        return render_template('practiceAnswer.html', test1=test1, test2=test2)
+        return render_template('practiceAnswer.html', test1=test1, test2=test2, letter=letter)
 
 @app.route('/firstScenario')
 def firstScenario():

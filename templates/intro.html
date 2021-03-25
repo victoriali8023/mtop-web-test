@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <style>
     body {
       padding-left: 20%;
@@ -72,7 +73,7 @@
           <source src='static/videos/AVideo.mp4' type="video/mp4">
         </video> -->
         <!-- <video controls id='video' width="640" height="480" src=''></video> -->
-        <img class='illustration' src='static/images/illustrations/D.png'>
+        <img id='illustration' src=''>
 
         <!-- <iframe id='video' src="" width="640" height="480"></iframe> -->
         
@@ -84,55 +85,7 @@
 </body>  
 <script>
     var letter = '{{letter}}';
-    // var not_watched_25 = true;
-    // var not_watched_50 = true;
-    // var not_watched_75 = true;
-
-    // var dict = {'A': "static/videos/AVideo.mp4",
-    //             'B': "static/videos/BVideo.mp4",
-    //             'C': "static/videos/CVideo.mp4",
-    //             'D': "static/videos/DVideo.mp4",
-    //             'E': "static/videos/EVideo.mp4",
-    //             'F': "static/videos/FVideo.mp4",
-    //             'G': "static/videos/GVideo.mp4",
-    //             'H': "static/videos/HVideo.mp4",
-    //             'I':"static/videos/IVideo.mp4",
-    //             'J':"static/videos/JVideo.mp4",
-    //             'K':"static/videos/KVideo.mp4",
-    //             'M':"static/videos/MVideo.mp4",
-    //             'N':"static/videos/NVideo.mp4",
-    //             'O':"static/videos/OVideo.mp4",
-    //             'P':"static/videos/PVideo.mp4",
-    //             'Q':"static/videos/QVideo.mp4"};
-
-    // document.getElementById('video').src = dict[letter];
-
-    //Track 25%, 50%, and 75% of video watched
-
-
-    // $("#video").on("timeupdate", function() {
-    //   var currentTime = $("#video").prop("currentTime");
-    //   var duration = $("#video").prop("duration");
-    //   //double percentages will occur because of calculations. ie. 25.1 % watched and 25.2%watched. 
-    //   //when fixed to decimal places 25 occurs and then 25 occurs again. 
-    //   //boolean value used to call pixel only once.
-    //   var percentage_watched = (currentTime / duration) * 100;
-    //   var video_progress = '';
-
-    //   if ((percentage_watched.toFixed() == 25) && (not_watched_25 == true)) {
-    //     console.log("watched 25%")
-        
-    //     not_watched_25 = false;
-    //   } else if ((percentage_watched.toFixed() == 50) && (not_watched_50 == true)) {
-    //     console.log("watched 50%")
-        
-    //     not_watched_50 = false;
-    //   } else if ((percentage_watched.toFixed() == 75) && (not_watched_75 == true)) {
-    //     console.log("watched 75%")
-        
-    //     not_watched_75 = false;
-    //   }
-    // })
+    document.getElementById('illustration').src = "static/images/illustrations/" + letter + '.png'
 
 
     // var dict = {'A': "https://drive.google.com/file/d/1VnL_DuSvYe_DO1qAjKpMnZj1txNchdye/preview",

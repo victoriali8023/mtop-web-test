@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf8"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
         body {
             padding-left: 20%;
@@ -30,11 +31,11 @@
         <form action="/practiceAnswer" class="form-inline" method="POST">
         <li>
             <h6>What are the progresses of these two interfaces?</h6>
-            <img src='static/images/pilot_study_photos/D/D4-1.png'><br>
+            <img id='interface1' src=''><br>
             <p>input your answer here: 
                 <input type="number" id="test1" name="test1" aria-label="First name"required>
             </p>
-            <img src='static/images/pilot_study_photos/D/D4-2.png'><br>
+            <img id='interface2' src=''><br>
             <p>input your answer here: <input type="number" id="test2" name="test2" aria-label="First name"required></p>
             <input id='submit' class="btn btn-primary" type="submit" value="Submit and check answer"/> 
         </li>
@@ -48,4 +49,9 @@
     
    
 </body>
+<script>
+    var letter = '{{letter}}';
+    document.getElementById('interface1').src = "static/images/pilot_study_photos/" + letter + "/" + letter + '4-1.png'
+    document.getElementById('interface2').src = "static/images/pilot_study_photos/" + letter + "/" + letter + '4-2.png'
+</script>
 </html>
