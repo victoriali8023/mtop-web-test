@@ -31,15 +31,15 @@
     <form action="/secondScenario" class="form-inline" method="POST">
         <h6>What was the time when you checked it last?</h6>
         <div class="input-group">
-            <input type="number" id="time1" name="time1" aria-label="First name" class="form-control" required>
+            <input type="number" id="time1" name="time1" aria-label="First name" class="form-control" required style="height: 30px">
             <p class='breakpoint'> : </p>
-            <input type="number" id="name2" name="time2" aria-label="Last name" class="form-control" required>
+            <input type="number" id="name2" name="time2" aria-label="Last name" class="form-control" required style="height: 30px">
         </div>
 
 
-        <h6>What was the progress when you checked it last? (write it in number. e.g. 28%)</h6>
+        <h6>What was the progress as a percentage when you checked it last?</h6>
         <div class='input-group'>
-            <input type="number" id="progress" name="progress" requiredminlength="2" maxlength="8" size="6" class="form-control" required>
+            <input type="number" id="progress" name="progress" requiredminlength="2" maxlength="8" size="6" class="form-control" required style="height: 30px"> %
         </div>
         
         <input id='submit' class="btn btn-primary" type="submit" value="Submit Quiz"/>
