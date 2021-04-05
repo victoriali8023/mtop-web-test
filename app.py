@@ -41,7 +41,7 @@ def insert_first_pop_question_to_users(value):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO Formal (Code, Interface, InterfaceOrder, CompletionThreeQuizzes, CompletionAll, Test1, Test2, Q1Date, Q1Time, Q1Progress, Q2Date, Q2Time, Q2Progress, Q3Date, Q3Time, Q3Progress, FinalDate, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16, S16) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], value[1], value[2], '', '', value[3], value[4], value[5], value[6], value[7], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
+    cur.execute("INSERT INTO Formal (Code, Interface, InterfaceOrder, CompletionThreeQuizzes, CompletionAll, Test1, Test2, Q1Date, Q1Time, Q1Progress, Q2Date, Q2Time, Q2Progress, Q3Date, Q3Time, Q3Progress, FinalDate, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16, S17) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (value[0], value[1], value[2], '', '', value[3], value[4], value[5], value[6], value[7], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''))
 
     conn.commit()
     conn.close()
