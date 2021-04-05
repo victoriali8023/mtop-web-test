@@ -318,7 +318,7 @@ def final():
     insertValue = []
     
     if request.method == 'POST':
-        for i in range(1,17):
+        for i in range(1,18):
             name = 's' + str(i)
             insertValue.append(request.form[name])
             
