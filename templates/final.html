@@ -2,13 +2,30 @@
 <html>
 <head>
     <meta charset="utf8"/>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_other.css') }}" />
-    <title>Question</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <style>
+        body {
+            padding-left: 20%;
+            padding-right: 20%;
+        }
+
+        .display-6 {
+            text-align: center;
+            padding-bottom: 2%;
+        }
+
+        .illustration {
+            width: 60%;
+        }
+    </style>
+    <title>Final</title>
 </head>
 <body>
 
-    <h2>Thank you for your participation! This is the end of the test!</h2>
-    <h3>Please go back to Amazon Mechanical Turk</h3>
+    <h6 class="display-6">Final</h6>
+    <p>Thank you for your participation! This is the end of the study session!</p>
+    <p>Please go back to Amazon Mechanical Turk</p>
     <p>enter this code: {{code}}</p>
+    <img id='illustration' src='static/images/illustrations/flow3.png'>
 </body>
 </html>
