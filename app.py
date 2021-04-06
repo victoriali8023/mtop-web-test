@@ -153,8 +153,12 @@ def firstScenario():
     interface = letter + interfaceDict[order]
     gamePage = order + 'Game.html'
 
+    date = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
+
     session['interface1'] = interface
     session['page1'] = gamePage
+    session['q1Date'] = date
+    session.permanent = True
 
     return render_template(scenarioPage, next='firstGame')
 
@@ -190,15 +194,14 @@ def secondScenario():
         time = request.form['time1'] + ':' + request.form['time2']
         progress = request.form['progress']
         
-        date = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
 
         session['q1Time'] = time
         session['q1Progress'] = progress
-        session['q1Date'] = date
         session.permanent = True
 
         test1 = session.get('test1', None)
         test2 = session.get('test2', None)
+        date = session.get('q1Date', None)
 
         order = session.get('second', None)
         code = session.get('code', None)
